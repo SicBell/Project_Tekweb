@@ -1,3 +1,7 @@
+<?php
+  include("db_connect.php");
+  include("Sign_up.php");
+?>
 <style>
   /* Google Font Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -305,25 +309,30 @@ body{
               <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
             </div>
         </form>
+        <!-- SIGN UP -->
       </div>
         <div class="signup-form">
           <div class="title">Signup</div>
-        <form action="#">
+        <form name="signup_form" method="POST" action="Sign_up.php">
             <div class="input-boxes">
               <div class="input-box">
                 <i id="logo" class="fas fa-user"></i>
-                <input type="text" placeholder="Enter your name" required>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
               </div>
               <div class="input-box">
                 <i id="logo" class="fas fa-envelope"></i>
-                <input type="text" placeholder="Enter your email" required>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required>
               </div>
               <div class="input-box">
                 <i id="logo" class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" required>
+                <input type="password" id="pass" name="pass" placeholder="Enter your password" required>
+              </div>
+              <div class="input-box">
+                <i id="logo" class="fas fa-lock"></i>
+                <input type="password" id="cpass" name="cpass" placeholder="Confirm your password" required>
               </div>
               <div class="button input-box">
-                <input type="submit" value="Sumbit">
+                <input type="submit" id="btn" value="SignUp" name="submit">
               </div>
               <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
             </div>
