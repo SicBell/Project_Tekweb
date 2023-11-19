@@ -21,13 +21,31 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-
     <?php require "header.php"; ?>
-    <h2>Welcome, User
-        <?php echo $username; ?>!
-    </h2>
-    <p><a href="logout.php">Logout</a></p>
-
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" width="100%">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-text text-white d-flex justify-content-center">
+                <h1>WELCOME,
+                    <?php echo $username; ?>
+                </h1>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+        </button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
