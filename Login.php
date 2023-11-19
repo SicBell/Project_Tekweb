@@ -300,7 +300,7 @@ body{
               </div>
               <div  class="text"><a  href="#">Forgot password?</a></div>
               <div class="button input-box">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Login">
               </div>
               <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
             </div>
