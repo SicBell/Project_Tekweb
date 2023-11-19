@@ -1,0 +1,8 @@
+.nav-link:hover {
+    background-color: red;
+    transition: 0.5s;
+}
+
+.nav-link {
+    height: 100%;
+}
