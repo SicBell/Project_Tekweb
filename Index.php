@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
     header("Location: login_page.php");
     exit();
 }
@@ -21,9 +21,11 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-    
-   <?php require "header.php"; ?>
-   <h2>Welcome, <?php echo $username; ?>!</h2>
+
+    <?php require "header.php"; ?>
+    <h2>Welcome, User
+        <?php echo $username; ?>!
+    </h2>
     <p><a href="logout.php">Logout</a></p>
 
 

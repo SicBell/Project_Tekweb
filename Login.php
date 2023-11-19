@@ -8,11 +8,20 @@ if (isset($_POST["Login"])) {
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_num_rows($result) == 1) {
-      // Start a session
-      session_start();
-      $_SESSION['username'] = $username;
-      header("Location: index.php");
+    $row = mysqli_fetch_assoc($result);
+
+    // Start a session
+    session_start();
+    $_SESSION['username'] = $username;
+    $_SESSION['user_type'] = $row['user_type'];
+
+    if ($row['user_type'] == 'admin') {
+      header("Location: Admin_page.php");
       exit();
+    } else {
+      header("Location: Index.php");
+      exit();
+    }
   } else {
     echo '<script>
                         window.location.href = "login_page.php";
