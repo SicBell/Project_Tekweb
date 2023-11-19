@@ -8,10 +8,20 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/header.css">
     <title>Header</title>
+    <style>
+        .nav-link:hover {
+            background-color: red;
+            transition: 0.5s;
+        }
+
+        .nav-link {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary pt-0">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary py-0">
         <div class="container-fluid" style="background-color: #142236;">
             <a class="navbar-brand text-light" href="#">
                 <img src="asset/navbar-icon.png" alt="Logo" width="35" height="35"
@@ -30,8 +40,8 @@
                         <a class="nav-link text-light rounded-1" href="#">Pricing</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light rounded-1" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-light rounded-1" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown link
                         </a>
                         <ul class="dropdown-menu">
