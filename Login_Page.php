@@ -274,7 +274,7 @@ body{
     <input type="checkbox" id="flip">
     <div class="cover">
       <div class="front">
-        <img src="background_login.jpg" alt="">
+        <img src="./asset/background_login.jpg" alt="">
         <div class="text">
           <span class="text-1">"There is more treasure in books <br>than in all the pirate's loot on Treasure island"</span>
           <span class="text-2">-Walt Disney</span>
@@ -302,7 +302,7 @@ body{
                 <i id="logo" class="fas fa-lock"></i>
                 <input type="password" id="Login_password" name="Login_password" placeholder="Enter your password" required>
               </div>
-              <div  class="text"><a  href="#">Forgot password?</a></div>
+              <div  class="text"><a  href="Forgot_password_page.php">Forgot password?</a></div>
               <div class="button input-box">
                 <input type="submit" name="Login" value="Login">
               </div>
