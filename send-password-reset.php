@@ -1,55 +1,38 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-$email = $_POST["email"];
+require './PHPMailer/src/Exception.php';
+require './PHPMailer/src/PHPMailer.php';
+require './PHPMailer/src/SMTP.php';
 
-$token = bin2hex(random_bytes(16));
+// Function to send the password reset email
+function sendPasswordResetEmail($to, $token) {
+    $mail = new PHPMailer(true);
 
-$token_hash = hash("sha256", $token);
+    try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.example.com'; // SMTP server
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'your_email@example.com'; // SMTP username
+        $mail->Password   = 'your_password'; // SMTP password
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
 
-$expiry = date("Y-m-d H:i:s", time() + 60 * 30);
-$mysqli = require __DIR__ . "/db_connect.php";
+        //Recipients
+        $mail->setFrom('your_email@example.com', 'Your Name');
+        $mail->addAddress($to); // Add a recipient
 
-$sql = "UPDATE accounts
-        SET reset_token_hash = ?,
-            reset_token_expires_at = ?
-        WHERE email = ?";
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Password Reset';
+        $mail->Body    = "Click the link below to reset your password: <br><a href='http://yourwebsite.com/reset-password.php?token=$token'>Reset Password</a>";
 
-$stmt = $mysqli->prepare($sql);
-
-$stmt->bind_param("sss", $token_hash, $expiry, $email);
-
-$stmt->execute();
-echo "SQL Query: " . $sql . "<br>";
-echo "Token Hash: " . $token_hash . "<br>";
-echo "Expiry: " . $expiry . "<br>";
-echo "Email: " . $email . "<br>";
-if ($stmt->error) {
-    die("Error: " . $stmt->error);
+        $mail->send();
+        echo 'Password reset email sent successfully!';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 }
-// if ($mysqli->affected_rows) {
-
-//     $mail = require __DIR__ . "/mailer.php";
-
-//     $mail->setFrom("noreply@example.com");
-//     $mail->addAddress($email);
-//     $mail->Subject = "Password Reset";
-//     $mail->Body = <<<END
-
-//     Click <a href="http://example.com/reset-password.php?token=$token">here</a> 
-//     to reset your password.
-
-//     END;
-
-//     try {
-
-//         $mail->send();
-
-//     } catch (Exception $e) {
-
-//         echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
-
-//     }
-
-// }
-
-// echo "Message sent, please check your inbox.";
+?>
