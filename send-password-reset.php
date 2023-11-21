@@ -1,38 +1,50 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require './PHPMailer/src/Exception.php';
-require './PHPMailer/src/PHPMailer.php';
-require './PHPMailer/src/SMTP.php';
-require './db_connect.php';
-// Function to send the password reset email
-function sendPasswordResetEmail($recipientsemail, $token) {
-    $mail = new PHPMailer(true);
-    $recipientsemail = $_POST['email'];
+$email = $_POST["email"];
+
+$token = bin2hex(random_bytes(16));
+
+$token_hash = hash("sha256", $token);
+
+$expiry = date("Y-m-d H:i:s", time() + 60 * 30);
+
+$mysqli = require __DIR__ . "/db_connect.php";
+
+$sql = "UPDATE accounts
+        SET reset_token_hash = ?,
+            reset_token_expires_at = ?
+        WHERE email = ?";
+
+$stmt = $mysqli->prepare($sql);
+
+$stmt->bind_param("sss", $token_hash, $expiry, $email);
+
+$stmt->execute();
+
+if ($mysqli->affected_rows) {
+
+    $mail = require __DIR__ . "/mailer.php";
+
+    $mail->setFrom("noreply@example.com");
+    $mail->addAddress($email);
+    $mail->Subject = "Password Reset";
+    $mail->Body = <<<END
+
+    Click <a href="localhost/xampp/project_tekweb/reset-password.php?token=$token">here</a> 
+    to reset your password.
+
+    END;
+
     try {
-        // Server settings
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com'; // Google's SMTP server
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'SicLibrary1986@gmail.com'; // Your Gmail email address
-        $mail->Password   = 'ljgl wexj bsuh dabl'; // Your Gmail password
-        $mail->SMTPSecure = 'tls';
-        $mail->Port       = 587;
-
-        // Recipients
-        $mail->setFrom('warrenmiltaico6@gmail.com', 'Your Name');
-        $mail->addAddress($recipientsemail); // Add a recipient
-
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = 'Password Reset';
-        $mail->Body    = "Click the link below to reset your password: <br><a href='http://yourwebsite.com/reset-password.php?token=$token'>Reset Password</a>";
 
         $mail->send();
-        echo 'Password reset email sent successfully!';
+
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+
     }
+
 }
-?>
+
+echo "Message sent, please check your inbox.";
