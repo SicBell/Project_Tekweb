@@ -5,24 +5,24 @@ use PHPMailer\PHPMailer\Exception;
 require './PHPMailer/src/Exception.php';
 require './PHPMailer/src/PHPMailer.php';
 require './PHPMailer/src/SMTP.php';
-
+require './db_connect.php';
 // Function to send the password reset email
-function sendPasswordResetEmail($to, $token) {
+function sendPasswordResetEmail($recipientsemail, $token) {
     $mail = new PHPMailer(true);
-
+    $recipientsemail = $_POST['email'];
     try {
-        //Server settings
+        // Server settings
         $mail->isSMTP();
-        $mail->Host       = 'smtp.example.com'; // SMTP server
+        $mail->Host       = 'smtp.gmail.com'; // Google's SMTP server
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'your_email@example.com'; // SMTP username
-        $mail->Password   = 'your_password'; // SMTP password
+        $mail->Username   = 'SicLibrary1986@gmail.com'; // Your Gmail email address
+        $mail->Password   = 'ljgl wexj bsuh dabl'; // Your Gmail password
         $mail->SMTPSecure = 'tls';
         $mail->Port       = 587;
 
-        //Recipients
-        $mail->setFrom('your_email@example.com', 'Your Name');
-        $mail->addAddress($to); // Add a recipient
+        // Recipients
+        $mail->setFrom('warrenmiltaico6@gmail.com', 'Your Name');
+        $mail->addAddress($recipientsemail); // Add a recipient
 
         // Content
         $mail->isHTML(true);

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tokenHash = password_hash($token, PASSWORD_DEFAULT);
     $expiresAt = date('Y-m-d H:i:s', strtotime('+1 hour'));
     
-    $stmt = $conn->prepare("UPDATE users SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?");
+    $stmt = $conn->prepare("UPDATE accounts SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?");
     $stmt->bind_param("sss", $tokenHash, $expiresAt, $email);
     $stmt->execute();
     $stmt->close();
