@@ -1,11 +1,11 @@
 <?php
 include("db_connect.php");
 if (isset($_POST["Login"])) {
-  $username = mysqli_real_escape_string($conn, $_POST['Login_username']);
-  $password = mysqli_real_escape_string($conn, $_POST['Login_password']);
+  $username = mysqli_real_escape_string($mysqli, $_POST['Login_username']);
+  $password = mysqli_real_escape_string($mysqli, $_POST['Login_password']);
 
   $sql = "SELECT * FROM accounts WHERE username ='$username' AND password = '$password'";
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($mysqli, $sql);
 
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
@@ -29,5 +29,5 @@ if (isset($_POST["Login"])) {
                     </script>';
   }
 }
-mysqli_close($conn);
+mysqli_close($mysqli);
 ?>
