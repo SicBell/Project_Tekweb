@@ -65,7 +65,7 @@ $result = $mysqli->query($query);
         <div class="row mt-5">
             <div class="col-12 d-flex flex-row justify-content-between">
                 <h1>Daftar Buku</h1>
-                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah Buku</a>&nbsp;<a class="btn btn-primary" href="./edit_book.php">Ubah Buku</a></span>
+                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah Buku</a></span>
             </div>
             <div class="col-12">
                 <p><?php if (isset($_SESSION['msg'])) {
@@ -80,8 +80,11 @@ $result = $mysqli->query($query);
                             <th>Pengarang</th>
                             <th>Tahun Terbit</th>
                             <th>Genre</th>
+                            <th>Sinopsis</th>
                             <th>Gambar</th>
+                            <th>Status</th>
                             <th>Aksi</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -95,12 +98,14 @@ $result = $mysqli->query($query);
                                     <td><?php echo $row['pengarang']; ?></td>
                                     <td><?php echo $row['tahun_terbit']; ?></td>
                                     <td><?php echo $row['genre']; ?></td>
+                                    <td><?php echo $row['sinopsis']; ?></td>
                                     <td>
                                         <?php 
                                         $gambarPath = 'img/' . $row['gambar'];
                                         echo "<img src='$gambarPath' alt='Book Image' style='max-width: 100px; max-height: 100px;' onclick='displayEnlargedImg(\"$gambarPath\")'>";
                                         ?>
                                     </td>
+                                    <td><?php echo $row['book_status'];?> </td>
                                     <td>
                                         <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Ubah</a>
                                         <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>

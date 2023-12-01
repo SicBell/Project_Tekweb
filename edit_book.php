@@ -34,6 +34,7 @@ if (count($_POST) > 0 && isset($book['id'])) {
     $pengarang = $_POST['pengarang'];
     $tahun_terbit = $_POST['tahun_terbit'];
     $genre = $_POST['genre'];
+    $sinopsis = $_POST['sinopsis'];
 
     // Handle image upload
     if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === 0) {
@@ -42,13 +43,13 @@ if (count($_POST) > 0 && isset($book['id'])) {
 
         move_uploaded_file($_FILES['gambar']['tmp_name'], $upload_dir . $newImageName);
 
-        // Update the database with the new image name ($newImageName)
-        $stmt = $mysqli->prepare("UPDATE books SET title=?, gambar=?, pengarang=?, tahun_terbit=?, genre=? WHERE id=?");
-        $stmt->bind_param("sssssi", $title, $newImageName, $pengarang, $tahun_terbit, $genre, $book['id']);
+        // Update the database with the new image name ($newImageName) and sinopsis
+        $stmt = $mysqli->prepare("UPDATE books SET title=?, gambar=?, pengarang=?, tahun_terbit=?, genre=?, sinopsis=? WHERE id=?");
+        $stmt->bind_param("ssssssi", $title, $newImageName, $pengarang, $tahun_terbit, $genre, $sinopsis, $book['id']);
     } else {
-        // Update the database without changing the image
-        $stmt = $mysqli->prepare("UPDATE books SET title=?, pengarang=?, tahun_terbit=?, genre=? WHERE id=?");
-        $stmt->bind_param("ssssi", $title, $pengarang, $tahun_terbit, $genre, $book['id']);
+        // Update the database without changing the image and including sinopsis
+        $stmt = $mysqli->prepare("UPDATE books SET title=?, pengarang=?, tahun_terbit=?, genre=?, sinopsis=? WHERE id=?");
+        $stmt->bind_param("sssssi", $title, $pengarang, $tahun_terbit, $genre, $sinopsis, $book['id']);
     }
 
     $res = $stmt->execute();
@@ -104,6 +105,10 @@ if (count($_POST) > 0 && isset($book['id'])) {
                         <label class="form-label">Tahun Terbit</label>
                         <input type="date" class="form-control" name="tahun_terbit"
                             value="<?php echo $book ? $book['tahun_terbit'] : ''; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Sinopsis</label>
+                        <textarea class="form-control" name="sinopsis" rows="3"><?php echo $book ? htmlspecialchars($book['sinopsis']) : ''; ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Genre</label>

@@ -6,8 +6,25 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
     exit();
 }
 
+require "db_connect.php";
+
 $username = $_SESSION['username'];
+
+// Fetch books from the database
+$sql = "SELECT * FROM books";
+$result = $mysqli->query($sql);
+
+// Check if there are any books
+if ($result->num_rows > 0) {
+    $books = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $books = [];
+}
+
+// Close the database connection
+$mysqli->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +56,50 @@ $username = $_SESSION['username'];
                 </h1>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-        </button>
+    </div>
+    <div class="container">
+        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
+        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★-----</p>
+        <div class="row">
+            <?php foreach ($books as $book): ?>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="card" style="width: 25rem;">
+                        <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
+                            src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3 style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                <?php echo $book['title']; ?>
+                                            </h3>
+                                            <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                ----★-----</p>
+                                            <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
+                                            <h4 style="text-align:center" >SYNOPSIS</h4>
+                                            <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                <?php echo $book['sinopsis']; ?>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" style="color: blue; align-items: center;"
+                                                class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
