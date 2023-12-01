@@ -1,48 +1,48 @@
 <?php
 
-// $token = $_POST["token"];
+$token = $_POST["token"];
 
-// $token_hash = hash("sha256", $token);
+$token_hash = hash("sha256", $token);
 
-// $mysqli = require __DIR__ . "/db_connect.php";
+$mysqli = require __DIR__ . "/db_connect.php";
 
-// $sql = "SELECT * FROM accounts
-//         WHERE reset_token_hash = ?";
+$sql = "SELECT * FROM accounts
+        WHERE reset_token_hash = ?";
 
-// $stmt = $mysqli->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 
-// $stmt->bind_param("s", $token_hash);
+$stmt->bind_param("s", $token_hash);
 
-// $stmt->execute();
+$stmt->execute();
 
-// $result = $stmt->get_result();
+$result = $stmt->get_result();
 
-// $user = $result->fetch_assoc();
+$user = $result->fetch_assoc();
 
-// if ($user === null) {
-//     die("token not found");
-// }
+if ($user === null) {
+    die("token not found");
+}
 
-// if (strtotime($user["reset_token_expires_at"]) <= time()) {
-//     die("token has expired");
-// }
+if (strtotime($user["reset_token_expires_at"]) <= time()) {
+    die("token has expired");
+}
 
-// if ($_POST["password"] !== $_POST["password_confirmation"]) {
-//     die("Passwords must match");
-// }
+if ($_POST["password"] !== $_POST["password_confirmation"]) {
+    die("Passwords must match");
+}
 
-// $password = $_POST['password'];
-// $sql = "UPDATE accounts
-//         SET password = ?,
-//             reset_token_hash = NULL,
-//             reset_token_expires_at = NULL
-//         WHERE Id = ?";
+$password = $_POST['password'];
+$sql = "UPDATE accounts
+        SET password = ?,
+            reset_token_hash = NULL,
+            reset_token_expires_at = NULL
+        WHERE Id = ?";
 
-// $stmt = $mysqli->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 
-// $stmt->bind_param("ss", $password, $user["Id"]);
+$stmt->bind_param("ss", $password, $user["Id"]);
 
-// $stmt->execute();
+$stmt->execute();
 
 
 ?>

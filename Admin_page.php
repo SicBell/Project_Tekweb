@@ -7,6 +7,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
 }
 
 $username = $_SESSION['username'];
+require "header.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,11 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome, Admin</title>
+    <span class="d-flex align-items-center"> <a href="./add_book.php" class="btn btn-primary" >Tambah Buku</a>
+    &nbsp; <a href="./edit_book.php" class="btn btn-primary" >Edit Buku</a> </span>
+
+    
+
 </head>
 <body>
     <h2>Welcome, Admin <?php echo $username; ?>!</h2>
