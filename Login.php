@@ -9,14 +9,11 @@ if (isset($_POST["Login"])) {
 
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
-    
+
     // Start a session
     session_start();
     $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
-    $_SESSION['email'] = $row['email'];
     $_SESSION['user_type'] = $row['user_type'];
-    $_SESSION['profile_pic'] = $row['profile_pic'];
 
     if ($row['user_type'] == 'admin') {
       header("Location: Admin_page.php");

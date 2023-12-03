@@ -263,7 +263,9 @@ body{
 
   <head>
     <meta charset="UTF-8">
+    
     <link rel="stylesheet" href="style.css">
+    <
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -290,7 +292,7 @@ body{
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-          <form action="Login.php" name="Login_form" method="POST">
+          <form action="Login.php" name="Login_form" method="POST" >
             <div class="input-boxes">
               <div class="input-box">
                 <i id="logo" class="fas fa-envelope"></i>
