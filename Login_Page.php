@@ -292,7 +292,7 @@ body{
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-          <form action="Login.php" name="Login_form" method="POST" >
+          <form action="Login.php" name="Login_form" method="POST">
             <div class="input-boxes">
               <div class="input-box">
                 <i id="logo" class="fas fa-envelope"></i>
