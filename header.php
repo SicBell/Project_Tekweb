@@ -34,10 +34,10 @@
                         <a class="nav-link active text-light rounded-1" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light rounded-1" href="#">Features</a>
+                        <a class="nav-link text-light rounded-1" href="borrowed_book.php">Log</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light rounded-1" href="#">Pricing</a>
+                        <a class="nav-link text-light rounded-1" href="borrowed_book.php">Pricing</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light rounded-1" href="#" role="button"

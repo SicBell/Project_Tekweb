@@ -6,27 +6,46 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
     exit();
 }
 
+
+
 $username = $_SESSION['username'];
 require "header.php";
 
 require "db_connect.php";
+// Number of records to display per page
+$recordsPerPage = 10;
+
+// Get the current page from the URL parameter
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start_from = ($current_page - 1) * $recordsPerPage;
+
+// Get the search query from the form
+$search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
+
+// Query to count total number of rows
+$countQuery = "SELECT COUNT(*) as total FROM books WHERE title LIKE '%$search_query%'";
+$countResult = $mysqli->query($countQuery);
+$totalRows = $countResult->fetch_assoc()['total'];
+
+// Perform a SQL query to get the books based on search and pagination
+$query = "SELECT * FROM books WHERE title LIKE '%$search_query%' LIMIT $start_from, $recordsPerPage";
+$result = $mysqli->query($query);
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-$query = "SELECT * FROM books"; // Adjust this query based on your actual table name
-
-$result = $mysqli->query($query);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome, Admin <?php echo $username; ?>!</title>
+    <title>Welcome, Admin
+        <?php echo $username; ?>!
+    </title>
 
     <!-- Add the modal styles -->
     <style>
@@ -58,20 +77,29 @@ $result = $mysqli->query($query);
             height: auto;
         }
     </style>
-
 </head>
+
 <body>
     <div class="container">
         <div class="row mt-5">
+            <form class="d-flex" role="search" action="search_book.php" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Search by Title" aria-label="Search"
+                    name="search_query">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
             <div class="col-12 d-flex flex-row justify-content-between">
                 <h1>Daftar Buku</h1>
-                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah Buku</a></span>
+                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah
+                        Buku</a></span>
             </div>
             <div class="col-12">
-                <p><?php if (isset($_SESSION['msg'])) {
+                <p>
+                    <?php if (isset($_SESSION['msg'])) {
                         echo $_SESSION['msg'];
                         $_SESSION['msg'] = null;
-                    } ?></p>
+                    } ?>
+                </p>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -84,34 +112,49 @@ $result = $mysqli->query($query);
                             <th>Gambar</th>
                             <th>Status</th>
                             <th>Aksi</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                        ?>
+                                ?>
                                 <tr>
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row['title']; ?></td>
-                                    <td><?php echo $row['pengarang']; ?></td>
-                                    <td><?php echo $row['tahun_terbit']; ?></td>
-                                    <td><?php echo $row['genre']; ?></td>
-                                    <td><?php echo $row['sinopsis']; ?></td>
                                     <td>
-                                        <?php 
+                                        <?php echo $row['id']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['title']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['pengarang']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['tahun_terbit']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['genre']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['sinopsis']; ?>
+                                    </td>
+                                    <td>
+                                        <?php
                                         $gambarPath = 'img/' . $row['gambar'];
                                         echo "<img src='$gambarPath' alt='Book Image' style='max-width: 100px; max-height: 100px;' onclick='displayEnlargedImg(\"$gambarPath\")'>";
                                         ?>
                                     </td>
-                                    <td><?php echo $row['book_status'];?> </td>
+                                    <td>
+                                        <?php echo $row['book_status']; ?>
+                                    </td>
                                     <td>
                                         <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Ubah</a>
-                                        <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
+                                        <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
                                     </td>
                                 </tr>
-                        <?php
+                                <?php
                             }
                         } else {
                             echo "<tr><td colspan='7'>Tidak ada buku.</td></tr>";
@@ -119,6 +162,29 @@ $result = $mysqli->query($query);
                         ?>
                     </tbody>
                 </table>
+            </div>
+            <!-- Add pagination links at the bottom of the table -->
+            <div class="col-12">
+                <ul class="pagination">
+                    <?php
+                    $total_pages = ceil($totalRows / $recordsPerPage);
+
+                    // Previous page link
+                    if ($current_page > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($current_page - 1) . "'>Previous</a></li>";
+                    }
+
+                    // Display page numbers
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        echo "<li class='page-item " . ($i == $current_page ? 'active' : '') . "'><a class='page-link' href='?page=$i'>$i</a></li>";
+                    }
+
+                    // Next page link
+                    if ($current_page < $total_pages) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($current_page + 1) . "'>Next</a></li>";
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>
@@ -148,7 +214,7 @@ $result = $mysqli->query($query);
         }
 
         // Close the modal when clicking outside the image
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             var modal = document.getElementById('imageModal');
             if (event.target === modal) {
                 modal.style.display = 'none';
@@ -156,6 +222,7 @@ $result = $mysqli->query($query);
         };
     </script>
 </body>
+
 </html>
 
 <?php
