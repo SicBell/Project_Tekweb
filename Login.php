@@ -12,8 +12,11 @@ if (isset($_POST["Login"])) {
 
     // Start a session
     session_start();
+    $_SESSION['password'] = $password;
+    $_SESSION['email'] = $row['email'];
     $_SESSION['username'] = $username;
     $_SESSION['user_type'] = $row['user_type'];
+    $_SESSION['profile_pic'] = $row['profile_pic']; 
 
     if ($row['user_type'] == 'admin') {
       header("Location: Admin_page.php");
