@@ -88,7 +88,7 @@
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">
-                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="Logout.php">SignOut</a>
+                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="#">SignOut</a>
                 </li>
             </div>
         </div>
