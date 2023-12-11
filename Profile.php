@@ -30,7 +30,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
     <div class="container-fluid mx-auto rounded-3 p-3" style="width: 70%; margin-top: 5%; background-color: #F5EEDC;">
         <form method="post" action="Index.php" enctype='multipart/form-data'>
             <div class="mb-3 d-flex justify-content-center">
-                <img class="rounded-circle" src="../Project_Tekweb2/img/<?php
+                <img class="rounded-circle" src="../Project_Tekweb/img/<?php
                 echo $_SESSION['profile_pic'] ?>" alt="Profile" width="100" height="100" class="align-text-center">
             </div>
             <div class="d-flex justify-content-center">
