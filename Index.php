@@ -35,7 +35,7 @@ if (!($error === 0) && isset($_POST['username'])) {
         $allowed_exs = array('jpg', 'jpeg', 'png');
         if (in_array($img_ex_to_lc, $allowed_exs)) {
             $new_img_name = uniqid($username, true) . '.' . $img_ex_to_lc;
-            $img_upload_path = '../Project_Tekweb2/img/' . $new_img_name;
+            $img_upload_path = '../Project_Tekweb/img/' . $new_img_name;
             move_uploaded_file($tmpName, $img_upload_path);
 
             $new_username = $_POST['username'];
