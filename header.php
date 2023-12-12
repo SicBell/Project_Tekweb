@@ -53,17 +53,13 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ms-2" id="navbarSupportedContent">
+            
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active text rounded-1" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light rounded-1" href="borrowed_book.php">Log</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light rounded-1" href="borrowed_book.php">Pricing</a>
-                        <a class="nav-link rounded-1" href="#">Link</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle rounded-1" href="#" role="button" data-bs-toggle="dropdown"
@@ -88,9 +84,9 @@
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">
-                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="#">SignOut</a>
+                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="logout.php">SignOut</a>
                 </li>
-            </div>
+            
         </div>
     </nav>
 

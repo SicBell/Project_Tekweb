@@ -83,8 +83,6 @@ if ($result->num_rows > 0) {
 $mysqli->close();
 ?>
 
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,67 +121,50 @@ $mysqli->close();
         <div class="row">
             <?php foreach ($books as $book): ?>
                 <?php if ($book['book_status'] !== 'borrowed'): ?>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="card" style="width: 25rem;">
-                        <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
-                            src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h3 style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                <?php echo $book['title']; ?>
-                                            </h3>
-                                            <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                ----★----</p>
-                                            <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
-                                            <h4 style="text-align:center">SYNOPSIS</h4>
-                                            <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                <?php echo $book['sinopsis']; ?>
-                                            </p>
-                                        </div>
-                                        
-                                        <div class="modal-footer">
-                                            <button type="button" style="color: blue; align-items: center;"
-                                                class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                            <button type="button" style="color: blue; align-items: center;"
-                                                class="btn btn-primary" onclick="addToCart(<?php echo $book['id']; ?>, '<?php echo $book['title']; ?>')">Add to Cart</button>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="card" style="width: 25rem;">
+                            <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
+                                src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3 style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                    <?php echo $book['title']; ?>
+                                                </h3>
+                                                <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                    ----★----</p>
+                                                <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
+                                                <h4 style="text-align:center">SYNOPSIS</h4>
+                                                <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
+                                                    <?php echo $book['sinopsis']; ?>
+                                                </p>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" style="color: blue; align-items: center;"
+                                                    class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
+                                                    Borrow Book
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div><?php endif; ?>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>
-<!-- Add a new modal for selecting return date -->
-<div class="modal fade" id="returnDateModal" tabindex="-1" role="dialog" aria-labelledby="returnDateModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="returnDateModalLabel">Select Return Date</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <label for="returnDate">Return Date:</label>
-            <input type="date" id="returnDate" name="returnDate" required>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="addToCartWithDate()">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -191,65 +172,12 @@ $mysqli->close();
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-
-<!-- JavaScript -->
-<script>
-    function addToCart(bookId, bookTitle) {
-        console.log('Current Date:', new Date().toISOString().split('T')[0]);
-
-        // Calculate the maximum date (current date + 7 days)
-        var maxDate = new Date();
-        maxDate.setDate(maxDate.getDate() + 7);
-
-        // Format the maximum date to 'YYYY-MM-DD'
-        var formattedMaxDate = maxDate.toISOString().split('T')[0];
-
-        console.log('Maximum Date:', formattedMaxDate);
-
-        // Set the maximum date dynamically
-        document.getElementById('returnDate').setAttribute('max', formattedMaxDate);
-
-        $('#returnDateModal').modal('show');
-
-        window.selectedBookId = bookId;
-        window.selectedBookTitle = bookTitle;
-    }
-
-    function addToCartWithDate() {
-        // Retrieve the selected date from the input field
-        var returnDate = document.getElementById('returnDate').value;
-
-        // Make an AJAX request to your server with bookId, bookTitle, and returnDate
-        $.ajax({
-            type: "POST",
-            url: "borrowBook.php",
-            data: {
-                id: window.selectedBookId,
-                title: window.selectedBookTitle,
-                returnDate: returnDate
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success) {
-                    alert(response.success);
-                    // Optionally, you can close the modal after a successful request
-                    $('#returnDateModal').modal('hide');
-                } else if (response.error) {
-                    alert(response.error);
-                } else {
-                    alert("Unexpected response from the server");
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('AJAX Error:', textStatus, errorThrown);
-                alert("Error adding book to cart");
-            }
-        });
-    }
-</script>
-
-
+    <script>
+        function redirectToBorrowForm(bookId) {
+            // Redirect to borrow_book_form.php with the book ID as a parameter
+            window.location.href = "borrow_book_form.php?bookId=" + bookId;
+        }
+    </script>
 
 </body>
 
