@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2023 at 08:53 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 14, 2023 at 10:08 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,16 +60,17 @@ CREATE TABLE `books` (
   `pengarang` varchar(255) NOT NULL,
   `tahun_terbit` date NOT NULL,
   `genre` varchar(255) NOT NULL,
-  `book_status` varchar(10) NOT NULL DEFAULT 'ready'
+  `book_status` varchar(10) NOT NULL DEFAULT 'ready',
+  `sinopsis` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready'),
-(2, 'james', '.png', '123', '2023-12-01', 'Mystery', 'ready');
+INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
+(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
+(2, 'james', 'scunt1.png', '123', '2023-12-01', 'Mystery', 'ready', '');
 
 --
 -- Indexes for dumped tables
