@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary py-0">
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary py-0">
         <div class="container-fluid" style="background-color: #F4BF96;">
             <a class="navbar-brand me-1" href="#">
                 <img src="asset/navbar-icon.png" alt="Logo" width="40" height="40" class="align-text-center">

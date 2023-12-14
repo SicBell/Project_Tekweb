@@ -117,12 +117,6 @@ $mysqli->close();
             <div class="carousel-item welcome-image active" width="100%">
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
-            <div class="carousel-item welcome-image">
-                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
-            </div>
-            <div class="carousel-item welcome-image">
-                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
-            </div>
             <div class="carousel-text text-white d-flex justify-content-center">
                 <h1>WELCOME,
                     <?php echo ucfirst($username); ?>
@@ -160,50 +154,58 @@ $mysqli->close();
             </form>
         </span>
         <div class="row">
-            <?php foreach ($books as $book): ?>
-                <?php if ($book['book_status'] !== 'borrowed'): ?>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
-                        <div class="card" style="width: 25rem;">
-                            <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
-                                src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h3 style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                    <?php echo $book['title']; ?>
-                                                </h3>
-                                                <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                    ----★----</p>
-                                                <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
-                                                <h4 style="text-align:center">SYNOPSIS</h4>
-                                                <p style="text-align: center; font-size: 20px; color: darkblue;" class="uts">
-                                                    <?php echo $book['sinopsis']; ?>
-                                                </p>
-                                            </div>
+            <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
+            <div class="col-12 hstack">
+                <?php foreach ($books as $book): ?>
+                    <?php if ($book['book_status'] !== 'borrowed'): ?>
+                        <!-- <div class="col-lg-4 col-md-3 col-sm-6"> -->
+                        <div class="col-4 me-2">
+                            <div class="card">
+                                <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
+                                    src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h3 style="text-align: center; font-size: 20px; color: darkblue;"
+                                                        class="uts">
+                                                        <?php echo $book['title']; ?>
+                                                    </h3>
+                                                    <p style="text-align: center; font-size: 20px; color: darkblue;"
+                                                        class="uts">
+                                                        ----★----</p>
+                                                    <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top"
+                                                        alt="...">
+                                                    <h4 style="text-align:center">SYNOPSIS</h4>
+                                                    <p style="text-align: center; font-size: 20px; color: darkblue;"
+                                                        class="uts">
+                                                        <?php echo $book['sinopsis']; ?>
+                                                    </p>
+                                                </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" style="color: blue; align-items: center;"
-                                                    class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
-                                                    Borrow Book
-                                                </button>
+                                                <div class="modal-footer">
+                                                    <button type="button" style="color: blue; align-items: center;"
+                                                        class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
+                                                        Borrow Book
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 

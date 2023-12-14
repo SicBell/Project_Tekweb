@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 05:57 AM
+-- Generation Time: Dec 14, 2023 at 08:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`Id`, `profile_pic`, `username`, `email`, `password`, `user_type`, `reset_token_hash`, `reset_token_expires_at`) VALUES
 (1, 'default-pp.jpg', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', NULL, NULL),
-(2, 'Richard656dec3a965753.02417268.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'user', 'a614708331c93b6c0824476d7ace396dc190afe12eaa520e058f45d336fc83df', '2023-12-04 16:18:49'),
+(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'user', 'a614708331c93b6c0824476d7ace396dc190afe12eaa520e058f45d336fc83df', '2023-12-04 16:18:49'),
 (3, 'Kevin656c73aba72553.44041931.jpg', 'Kevin', 'kevin@gmail.com', '123', 'user', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -59,16 +59,17 @@ CREATE TABLE `books` (
   `gambar` varchar(255) NOT NULL,
   `pengarang` varchar(255) NOT NULL,
   `tahun_terbit` date NOT NULL,
-  `genre` varchar(255) NOT NULL
+  `genre` varchar(255) NOT NULL,
+  `book_status` varchar(10) NOT NULL DEFAULT 'ready'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance'),
-(2, 'james', '.png', '123', '2023-12-01', 'Mystery');
+INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`) VALUES
+(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready'),
+(2, 'james', '.png', '123', '2023-12-01', 'Mystery', 'ready');
 
 --
 -- Indexes for dumped tables

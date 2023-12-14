@@ -5,8 +5,64 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
     header("Location: login_page.php");
     exit();
 }
+require "db_connect.php";
 
+if (isset($_POST['username']) || isset($_POST['email']) || isset($_POST['emailUser']) || isset($_FILES['profilePic'])) {
+    $_SESSION['profilePic'] = $_FILES['profilePic']['name'];
+    $error = $_FILES['profilePic']['error'];
+    $_SESSION['username'] = $_POST['username'];
+    $tmpName = $_FILES['profilePic']['tmp_name'];
+    $imgName = $_FILES['profilePic']['name'];
+} else {
+    $error = "";
+    $img_name = "";
+}
 
+$username = $_SESSION['username'];
+
+if (!($error === 0) && isset($_POST['username'])) {
+    echo "unknown error occured!";
+    exit;
+} else {
+    if (isset($_FILES['profilePic'])) {
+        $img_ex = pathinfo($imgName, PATHINFO_EXTENSION);
+        // echo $imgName;    
+        $img_ex_to_lc = strtolower($img_ex);
+        $allowed_exs = array('jpg', 'jpeg', 'png');
+        if (in_array($img_ex_to_lc, $allowed_exs)) {
+            $new_img_name = uniqid($username, true) . '.' . $img_ex_to_lc;
+            $img_upload_path = '../Project_Tekweb/img/' . $new_img_name;
+            move_uploaded_file($tmpName, $img_upload_path);
+
+            $new_username = $_POST['username'];
+            $new_mail = $_POST['emailUser'];
+            $old_mail = $_SESSION['email'];
+            // Insert into database
+            $sql = "UPDATE accounts
+            SET username = '$new_username', email = '$new_mail', profile_pic = '$new_img_name'
+            WHERE email = '$old_mail'";
+            $mysqli->query($sql);
+        } else {
+            echo "You cannot upload files of this type";
+            exit;
+        }
+    }
+}
+
+$username = $_SESSION['username'];
+// $password = $_SESSION['password'];
+
+$sql = "SELECT * FROM accounts WHERE username ='$username'";
+$result = mysqli_query($mysqli, $sql);
+$row;
+if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_assoc($result);
+}
+$username = $row['username'];
+$password = $row['password'];
+$_SESSION['email'] = $row['email'];
+$_SESSION['profile_pic'] = $row['profile_pic'];
+$_SESSION['username'] = $username;
 
 $username = $_SESSION['username'];
 require "header.php";
