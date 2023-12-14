@@ -117,12 +117,6 @@ $mysqli->close();
             <div class="carousel-item welcome-image active" width="100%">
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
-            <div class="carousel-item welcome-image">
-                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
-            </div>
-            <div class="carousel-item welcome-image">
-                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
-            </div>
             <div class="carousel-text text-white d-flex justify-content-center">
                 <h1>WELCOME,
                     <?php echo ucfirst($username); ?>
