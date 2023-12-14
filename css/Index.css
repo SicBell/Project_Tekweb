@@ -1,4 +1,4 @@
-.carousel-inner .carousel-item>img {
+.welcome-part .welcome-image>img {
     -webkit-animation: thing 30s;
     -o-animation: thing 30s;
     animation: thing 30s;
@@ -14,19 +14,19 @@
     }
 }
 
-.carousel-inner {
-    height: 500px;
+.welcome-part {
+    height: 60vh;
 }
 
-.carousel-item img {
+.welcome-image img {
     width: 100%;
-    height: 500px;
+    height: 100%;
     filter: blur(8px);
     -webkit-filter: blur(8px);
     object-fit: fill;
 }
 
-.carousel-item {
+.welcome-image {
     width: 100vw;
     max-width: 100%;
 }
@@ -39,4 +39,23 @@
 .carousel-text {
     align-items: center !important;
     padding-top: 225px;
+}
+
+.quote-part {
+    height: 70vh;
+}
+
+.quote-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.quote-image {
+    height: 50vh;
+}
+
+input {
+    flex: 1;
+    background-color: transparent;
 }
