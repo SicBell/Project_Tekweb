@@ -192,10 +192,12 @@ $mysqli->close();
                                                 <div class="modal-footer">
                                                     <button type="button" style="color: blue; align-items: center;"
                                                         class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
+                                                <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">        
                                                     <button type="button" class="btn btn-primary"
                                                         onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
                                                         Borrow Book
                                                     </button>
+                                                </a>    
                                                 </div>
                                             </div>
                                         </div>
