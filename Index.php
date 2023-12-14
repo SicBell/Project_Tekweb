@@ -208,9 +208,7 @@ $mysqli->close();
             </div>
         </div>
     </div>
-
-
-
+    
     <script>
         function redirectToBorrowForm(bookId) {
             // Redirect to borrow_book_form.php with the book ID as a parameter

@@ -49,8 +49,6 @@ if (count($_POST) > 0) {
         echo "Tidak dapat menambah buku";
         die();
     }
-
-    $stmt->close();
 }
 ?>
 
@@ -73,7 +71,7 @@ if (count($_POST) > 0) {
                 <span class="d-flex align-items-center"> <a class="btn btn-secondary" href="./Admin_page.php">Kembali</a></span>
             </div>
             <div class="col-12">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="" class="form-label">Judul Buku</label>
                         <input type="text" class="form-control" name="title" value="">
