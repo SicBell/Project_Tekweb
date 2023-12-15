@@ -30,7 +30,7 @@ if ($mysqli->affected_rows) {
     $mail->Subject = "Password Reset";
     $mail->Body = <<<END
 
-    Click <a href="localhost/Project_Tekweb2/reset-password.php?token=$token">here</a> 
+    Click <a href="localhost/Project_Tekweb/reset-password.php?token=$token">here</a> 
 
     END;
 

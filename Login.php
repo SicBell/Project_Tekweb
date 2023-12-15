@@ -16,15 +16,10 @@ if (isset($_POST["Login"])) {
     $_SESSION['email'] = $row['email'];
     $_SESSION['username'] = $username;
     $_SESSION['user_type'] = $row['user_type'];
-    $_SESSION['profile_pic'] = $row['profile_pic']; 
+    $_SESSION['profile_pic'] = $row['profile_pic'];
 
-    if ($row['user_type'] == 'admin') {
-      header("Location: Admin_page.php");
-      exit();
-    } else {
-      header("Location: Index.php");
-      exit();
-    }
+    header("Location: Index.php");
+    exit();
   } else {
     echo '<script>
                         window.location.href = "login_page.php";

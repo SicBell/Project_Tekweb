@@ -63,6 +63,7 @@ $password = $row['password'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
+$_SESSION['page_name'] = 'admin_page.php';
 
 $username = $_SESSION['username'];
 require "header.php";

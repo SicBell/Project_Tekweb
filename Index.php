@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
-    header("Location: login_page.php");
-    exit();
+if (!isset($_SESSION['username'])) {
+    header("Location: Login_Page.php");
+    exit;
 }
 
 require "db_connect.php";
@@ -64,6 +64,7 @@ $password = $row['password'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
+$_SESSION['page_name'] = 'index.php';
 
 // Fetch books from the database
 $sql = "SELECT * FROM books";
@@ -143,7 +144,7 @@ $mysqli->close();
             <form class="d-flex me-2 w-50" role="search">
                 <div class="input-group">
                     <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off"
-                        aria-describedby="button-addon2" data-filter="data.json">
+                       >
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
@@ -159,7 +160,7 @@ $mysqli->close();
                 <?php foreach ($books as $book): ?>
                     <?php if ($book['book_status'] !== 'borrowed'): ?>
                         <!-- <div class="col-lg-4 col-md-3 col-sm-6"> -->
-                        <div class="col-4 me-2">
+                        <div class="col-3 me-2">
                             <div class="card">
                                 <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
                                     src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
@@ -192,12 +193,12 @@ $mysqli->close();
                                                 <div class="modal-footer">
                                                     <button type="button" style="color: blue; align-items: center;"
                                                         class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                                <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">        
-                                                    <button type="button" class="btn btn-primary"
-                                                        onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
-                                                        Borrow Book
-                                                    </button>
-                                                </a>    
+                                                    <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
+                                                            Borrow Book
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +211,9 @@ $mysqli->close();
             </div>
         </div>
     </div>
-    
+
+
+
     <script>
         function redirectToBorrowForm(bookId) {
             // Redirect to borrow_book_form.php with the book ID as a parameter
