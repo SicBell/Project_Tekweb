@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 03:59 PM
+-- Generation Time: Dec 15, 2023 at 09:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,12 +70,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'available', 'TESTING 123 123'),
-(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'available', 'cogan'),
-(4, 'Matahari', 'Matahari.jpg', 'Tere Liye', '2023-12-14', 'History', 'available', 'kkk'),
-(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'available', '23j3eij2e'),
-(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'available', 'dsds'),
-(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'available', 'wwwe');
+(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
+(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan'),
+(4, 'James', 'scunt1.png', 'bruh', '2023-12-14', 'romance', 'ready', 'kkk'),
+(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'ready', '23j3eij2e'),
+(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'ready', 'dsds'),
+(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'ready', 'wwwe');
 
 -- --------------------------------------------------------
 
