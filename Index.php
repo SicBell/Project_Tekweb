@@ -145,18 +145,41 @@ $mysqli->close();
                     </svg></button>
             </div>
         </span>
+        <div class="filter-button mb-5 d-flex justify-content-center w-50 mx-auto">
+            <ul class="list-group list-group-horizontal" style="list-style-type: none;">
+                <li><button type="button" class="btn btn-primary All me-2" aria-pressed="false">All</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Fantasy me-2" aria-pressed="false">Fantasy</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Science me-2" aria-pressed="false">Science
+                        Fiction</button></li>
+                <li><button type="button" class="btn btn-primary Action me-2" aria-pressed="false">Action &
+                        Adventure</button></li>
+                <li><button type="button" class="btn btn-primary Mystery me-2" aria-pressed="false">Mystery</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Horror me-2" aria-pressed="false">Horror</button></li>
+                <li><button type="button" class="btn btn-primary Thriller me-2" aria-pressed="false">Thriller &
+                        Suspense</button></li>
+                <li><button type="button" class="btn btn-primary Romance me-2" aria-pressed="false">Romance</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Biography me-2" aria-pressed="false">Biography</button>
+                </li>
+                <li><button type="button" class="btn btn-primary History me-2" aria-pressed="false">History</button>
+                </li>
+            </ul>
+        </div>
         <div class='d-flex justify-content-center'>
-        <?php
+            <?php
             if (isset($_SESSION['success_message'])) {
                 echo "<div class='d-flex justify-content-center w-50 alert alert-success' role='alert'>";
                 echo $_SESSION['success_message'];
                 echo "</div>";
-            
+
                 // Clear the session variable to avoid displaying the message again on page refresh
                 unset($_SESSION['success_message']);
-            } 
+            }
             ?>
-        </div>    
+        </div>
         <div class="row book-result hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
             <!-- <div class="col-12 hstack book-result d-flex justify-content-center">
@@ -176,8 +199,6 @@ $mysqli->close();
                     <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
                     <p><i class="fa fa-phone"></i> +91-9999878398 </p>
                     <p><i class="fa fa fa-envelope"></i> info@example.com </p>
-
-
                 </div>
 
 
@@ -271,20 +292,201 @@ $mysqli->close();
             highlightClass: 'fw-bold text-primary'
         });
 
+        var inputButton;
+        var F = $(".Fantasy").attr("aria-pressed");
+        var S = $(".Science").attr("aria-pressed");
+        var H = $(".History").attr("aria-pressed");
+        var B = $(".Biography").attr("aria-pressed");
+        var R = $(".Romance").attr("aria-pressed");
+        var T = $(".Thriller").attr("aria-pressed");
+        var Ho = $(".Horror").attr("aria-pressed");
+        var A = $(".Action").attr("aria-pressed");
+        var M = $(".Mystery").attr("aria-pressed");
+
+        $(".All").click(function () {
+            // if (F == "false") {
+            inputButton = "ready"
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Fantasy").click(function () {
+            // if (F == "false") {
+            inputButton = "Fantasy"
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Science").click(function () {
+            // if (S == "false") {
+            inputButton = "Science";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Action").click(function () {
+            // if (A == "false") {
+            inputButton = "Action";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Mystery").click(function () {
+            // // if (M == "false") {
+            //     M = "true";
+            //     $(".Mystery").attr("aria-pressed", M);
+            inputButton = "Mystery";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Horror").click(function () {
+            // // if (Ho == "false") {
+            //     Ho = "true";
+            //     $(".Horror").attr("aria-pressed", Ho);
+            inputButton = "Horror";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Thriller").click(function () {
+            // // if (T == "false") {
+            //     T = "true";
+            //     $(".Thriller").attr("aria-pressed", T);
+            inputButton = "Thriller";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Romance").click(function () {
+            // // if (R == "false") {
+            //     R = "true";
+            //     $(".Romance").attr("aria-pressed", R);
+            inputButton = "Romance";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Biography").click(function () {
+            // // if (B == "false") {
+            //     $(".Biography").attr("aria-pressed", B);
+            inputButton = "Biography";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".History").click(function () {
+            // if (H == "false") {
+            inputButton = "History";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+
         $(document).ready(function () {
             var input = "ready";
-            <?php if (isset($_SESSION['username'])) {?>
+            <?php if (isset($_SESSION['username'])) { ?>
                 $.ajax({
-                        url: "showBooks.php",
-                        method: "POST",
-                        data: { input: input },
+                    url: "showBooks.php",
+                    method: "POST",
+                    data: { input: input },
 
-                        success: function (data) {
-                            $('.book-result').html(data);
-                            $('.book-result').css("display", "block");
-                        }
-                    });
-            <?php }?>
+                    success: function (data) {
+                        $('.book-result').html(data);
+                        $('.book-result').css("display", "block");
+                    }
+                });
+            <?php } ?>
             $("#searchBook").keyup(function () {
                 input = $(this).val();
                 if (input != "") {
