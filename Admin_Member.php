@@ -80,12 +80,11 @@ $start_from = ($current_page - 1) * $recordsPerPage;
 $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
 
 // Query to count total number of rows
-$countQuery = "SELECT COUNT(*) as total FROM books WHERE title LIKE '%$search_query%'";
+$countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user'";
 $countResult = $mysqli->query($countQuery);
 $totalRows = $countResult->fetch_assoc()['total'];
 
-// Perform a SQL query to get the books based on search and pagination
-$query = "SELECT * FROM books WHERE title LIKE '%$search_query%' LIMIT $start_from, $recordsPerPage";
+$query = "SELECT * FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user' LIMIT $start_from, $recordsPerPage";
 $result = $mysqli->query($query);
 
 if ($mysqli->connect_error) {
@@ -137,15 +136,11 @@ if ($mysqli->connect_error) {
 </head>
 
 <body>
+    <p>.</p>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-12 d-flex flex-row justify-content-between">
-                <h1>Daftar Buku</h1>
-                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah
-                        Buku</a></span>
-            </div>
             <form class="d-flex" role="search" action="search_book.php" method="GET">
-                <input class="text me-3" type="search" placeholder="Search by Title" aria-label="Search"
+                <input class="text me-3" type="search" placeholder="Search by Name" aria-label="Search"
                     name="search_query">
             </form>
             <div class="col-12">
@@ -158,14 +153,10 @@ if ($mysqli->connect_error) {
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Judul Buku</th>
-                            <th>Pengarang</th>
-                            <th>Tahun Terbit</th>
-                            <th>Genre</th>
-                            <th>Sinopsis</th>
-                            <th>Gambar</th>
-                            <th>Status</th>
+                            <th>ID User</th>
+                            <th>Profile</th>
+                            <th>Username</th>
+                            <th>Email</th>
                             <th>Aksi</th>
 
                         </tr>
@@ -177,34 +168,19 @@ if ($mysqli->connect_error) {
                                 ?>
                                 <tr>
                                     <td>
-                                        <?php echo $row['id']; ?>
+                                        <?php echo $row['Id']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['title']; ?>
+                                        <?php echo $row['profile_pic']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['pengarang']; ?>
+                                        <?php echo $row['username']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['tahun_terbit']; ?>
+                                        <?php echo $row['email']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['genre']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['sinopsis']; ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $gambarPath = 'img/' . $row['gambar'];
-                                        echo "<img src='$gambarPath' alt='Book Image' style='max-width: 100px; max-height: 100px;' onclick='displayEnlargedImg(\"$gambarPath\")'>";
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['book_status']; ?>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Ubah</a>
+                                        <a class="btn btn-primary" href="">Ubah</a>
                                         <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"
                                             onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
                                     </td>
@@ -212,7 +188,7 @@ if ($mysqli->connect_error) {
                                 <?php
                             }
                         } else {
-                            echo "<tr><td colspan='7'>Tidak ada buku.</td></tr>";
+                            echo "<tr><td colspan='7'>Tidak ada Member.</td></tr>";
                         }
                         ?>
                     </tbody>
