@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2023 at 07:01 PM
+-- Generation Time: Dec 15, 2023 at 04:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,8 +43,8 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`Id`, `profile_pic`, `username`, `email`, `password`, `user_type`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'default-pp.jpg', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', NULL, NULL),
-(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'user', 'a614708331c93b6c0824476d7ace396dc190afe12eaa520e058f45d336fc83df', '2023-12-04 16:18:49'),
+(1, 'SicBell657bc528874477.02156380.png', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', NULL, NULL),
+(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'user', '9564d66036de9456dfbbd4eabae48503c3349a25c58c3245fd64bcc54d406ea9', '2023-12-15 04:58:07'),
 (3, 'Kevin656c73aba72553.44041931.jpg', 'Kevin', 'kevin@gmail.com', '123', 'user', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -70,7 +70,8 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
 (1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
-(2, 'james', 'scunt1.png', '123', '2023-12-01', 'Mystery', 'ready', '');
+(2, 'james', 'scunt1.png', '123', '2023-12-01', 'Mystery', 'ready', ''),
+(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_borrowed_books`

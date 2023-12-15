@@ -29,8 +29,13 @@ if ($mysqli->affected_rows) {
     $mail->addAddress($email);
     $mail->Subject = "Password Reset";
     $mail->Body = <<<END
+<<<<<<< HEAD
     Reset Your Password:
     Click <a href="localhost//Project_Tekweb/reset-password.php?token=$token">here</a> 
+=======
+
+    Click <a href="localhost/Project_Tekweb/reset-password.php?token=$token">here</a> 
+>>>>>>> e8b783dac1b05ff48990322164342344a38af7b8
 
     END;
 
