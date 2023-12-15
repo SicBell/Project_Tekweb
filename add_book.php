@@ -107,7 +107,7 @@ if (count($_POST) > 0) {
                             <option value="History">History</option>
                         </select>
                     </div>
-                    <button name="submit" type="submit" class="btn btn-primary">Add</button>
+                    <button name="submit" type="submit" class="btn btn-primary mb-3">Add</button>
                 </form>
             </div>
         </div>

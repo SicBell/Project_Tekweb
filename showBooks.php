@@ -17,8 +17,8 @@ if (isset($_POST['input'])) {
                 <div class="col-3 me-2">
                     <div class="card">
                         <img data-bs-target="#book<?php echo $row['id']; ?>" data-bs-toggle="modal"
-                            src="img/<?php echo $row['gambar']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
+                            src="img/<?php echo $row['gambar']; ?>" class="card-img-top rounded-1" alt="...">
+                        <!-- <div class="card-body"> -->
                             <div class="modal fade" id="book<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -51,7 +51,7 @@ if (isset($_POST['input'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             <?php }

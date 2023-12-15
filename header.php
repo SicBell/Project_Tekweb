@@ -82,6 +82,7 @@
                 <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['page_name'] == 'admin_page.php') { ?>
                     <a href="Index.php" class="me-2">Go to Index Page</a>
                 <?php } ?>
+                <br><br>
                 <a href="Profile.php"><img class="rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>

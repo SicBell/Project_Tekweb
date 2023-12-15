@@ -157,11 +157,11 @@ $mysqli->close();
             } 
             ?>
         </div>    
-        <div class="row">
+        <div class="row book-result hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
-            <div class="col-12 hstack book-result d-flex justify-content-center">
+            <!-- <div class="col-12 hstack book-result d-flex justify-content-center">
                 
-            </div>
+            </div> -->
         </div>
     </div>
 
