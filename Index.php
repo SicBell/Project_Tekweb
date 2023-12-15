@@ -88,7 +88,6 @@ foreach ($result as $row) {
         'value' => $row['title']
     );
 }
-
 $mysqli->close();
 ?>
 
@@ -107,8 +106,8 @@ $mysqli->close();
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <script src="library/autoComplete.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -133,77 +132,23 @@ $mysqli->close();
     </div>
     <div class="container-fluid">
         <!-- <div class="text" style="z-index: 15;"> -->
-            <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
-            <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
+        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
+        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
         <!-- </div> -->
-        <span class="d-flex justify-content-center mb-3">
-            <form class="d-flex me-2 w-50" role="search">
-                <div class="input-group">
-                    <input class="form-control" type="text" id="searchBook" placeholder="Search Book"
-                        autocomplete="off">
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                        </svg></button>
-                </div>
-            </form>
+        <span class="d-flex w-50 mx-auto justify-content-center mb-3">
+            <div class="input-group">
+                <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off">
+                <button class="btn btn-outline-primary" id="button-search"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg></button>
+            </div>
         </span>
         <div class="row">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
-            <div class="col-12 hstack">
-                <?php foreach ($books as $book): ?>
-                    <?php if ($book['book_status'] !== 'borrowed'): ?>
-                        <!-- <div class="col-lg-4 col-md-3 col-sm-6"> -->
-                        <div class="col-3 me-2">
-                            <div class="card">
-                                <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
-                                    src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="modal fade" id="book<?php echo $book['id']; ?>" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 style="text-align: center; font-size: 20px; color: darkblue;"
-                                                        class="uts">
-                                                        <?php echo $book['title']; ?>
-                                                    </h3>
-                                                    <p style="text-align: center; font-size: 20px; color: darkblue;"
-                                                        class="uts">
-                                                        ----★----</p>
-                                                    <img src="img/<?php echo $book['gambar']; ?>" class="card-img-top"
-                                                        alt="...">
-                                                    <h4 style="text-align:center">SYNOPSIS</h4>
-                                                    <p style="text-align: center; font-size: 20px; color: darkblue;"
-                                                        class="uts">
-                                                        <?php echo $book['sinopsis']; ?>
-                                                    </p>
-                                                </div>
+            <div class="col-12 hstack book-result d-flex justify-content-center">
 
-                                                <div class="modal-footer">
-                                                    <button type="button" style="color: blue; align-items: center;"
-                                                        class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                                    <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">
-                                                        <button type="button" class="btn btn-primary"
-                                                            onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
-                                                            Borrow Book
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -312,7 +257,49 @@ $mysqli->close();
             maximumItems: 10,
             highlightTyped: true,
             highlightClass: 'fw-bold text-primary'
-        }); 
+        });
+
+        $(document).ready(function () {
+            $("#searchBook").keyup(function () {
+                var input = $(this).val();
+                // alert(input);
+
+                if (input != "") {
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+                } else {
+                    $('.book-result').css("display", "none");
+                }
+            });
+            $("#button_search").click(function () {
+                var input = $(this).val();
+                // alert(input);
+
+                if (input != "") {
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $("#searchBook").val(input);
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+                } else {
+                    $('.book-result').css("display", "none");
+                }
+            });
+        });
     </script>
 
 </body>

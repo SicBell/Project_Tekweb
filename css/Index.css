@@ -34,6 +34,10 @@
     height: 100%;
 }
 
+.uts {
+    font-family: 'Patua One', serif;
+}
+
 .carousel-text h1{
     z-index: 10;
 }
