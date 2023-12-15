@@ -139,13 +139,13 @@ if ($mysqli->connect_error) {
 <body>
     <div class="container">
         <div class="row mt-5">
-            <form class="d-flex" role="search" action="search_book.php" method="GET">
+            <form class="d-flex mt-3" role="search" action="search_book.php" method="GET">
                 <input class="form-control me-2" type="search" placeholder="Search by Title" aria-label="Search"
                     name="search_query">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
-            <div class="col-12 d-flex flex-row justify-content-between">
+            <div class="col-12 mt-3 d-flex flex-row justify-content-between">
                 <h1>Daftar Buku</h1>
                 <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah
                         Buku</a></span>

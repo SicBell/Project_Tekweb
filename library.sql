@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 04:37 AM
+-- Generation Time: Dec 15, 2023 at 09:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,8 +70,11 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
 (1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
-(2, 'james', 'scunt1.png', '123', '2023-12-01', 'Mystery', 'ready', ''),
-(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan');
+(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan'),
+(4, 'James', 'scunt1.png', 'bruh', '2023-12-14', 'romance', 'ready', 'kkk'),
+(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'ready', '23j3eij2e'),
+(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'ready', 'dsds'),
+(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'ready', 'wwwe');
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_borrowed_books`
