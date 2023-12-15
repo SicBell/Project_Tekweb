@@ -43,25 +43,28 @@ $mysqli->close();
 </head>
 
 <body>
-    <!-- Display borrowed books -->
-    <div class="container mt-5">
-        <h2>Borrowed Books</h2>
-        <?php if (!empty($borrowedBooks)): ?>
-            <ul>
-                <?php foreach ($borrowedBooks as $book): ?>
-                    <li>
-                        <?php echo $book['book_title']; ?>
-                        <form action="return_book.php" method="post" style="display: inline;">
-                            <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
-                            <button class="btn btn-primary" type="submit">Return</button>
-                        </form>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p>No books borrowed.</p>
-        <?php endif; ?>
-    </div>
+<div class="container mt-5">
+    <h2>Borrowed Books</h2>
+    <?php if (!empty($borrowedBooks)): ?>
+        <ul>
+            <?php foreach ($borrowedBooks as $book): ?>
+                <li>
+                    <?php echo $book['book_title']; ?>
+                    <form action="borrowBook.php" method="post" style="display: inline;">
+                        <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
+                        <button class="btn btn-danger" type="submit" name="return">Return</button>
+                    </form>
+                    <form action="borrowBook.php" method="post" style="display: inline;">
+                        <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
+                        <button class="btn btn-success" type="submit" name="borrow">Borrow</button>
+                    </form>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No books borrowed.</p>
+    <?php endif; ?>
+</div>
 </body>
 
 </html>

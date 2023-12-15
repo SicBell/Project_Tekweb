@@ -145,10 +145,22 @@ $mysqli->close();
                     </svg></button>
             </div>
         </span>
+        <div class='d-flex justify-content-center'>
+        <?php
+            if (isset($_SESSION['success_message'])) {
+                echo "<div class='d-flex justify-content-center w-50 alert alert-success' role='alert'>";
+                echo $_SESSION['success_message'];
+                echo "</div>";
+            
+                // Clear the session variable to avoid displaying the message again on page refresh
+                unset($_SESSION['success_message']);
+            } 
+            ?>
+        </div>    
         <div class="row">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
-            <div class="col-12 hstack book-result d-flex justify-content-center">
-
+            <div class="col-12 hstack book-result">
+                
             </div>
         </div>
     </div>
