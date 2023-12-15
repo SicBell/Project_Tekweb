@@ -276,25 +276,15 @@ $mysqli->close();
 <!--headin5_amrc ends here-->
 
 <ul class="footer_ul2_amrc">
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
+<li><a href="https://wa.me/0817333434" target="_blank"> <img src="asset/whatsapp_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
+<li><a href="https://www.instagram.com/ui_library/?hl=en" target="_blank"> <img src="asset/instagram_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
+<li><a href="https://twitter.com/UI_library" target="_blank"> <img src="asset/x_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
 </ul>
 <!--footer_ul2_amrc ends here-->
 </div>
 </div>
 </div>
 
-
-<div class="container">
-<ul class="foote_bottom_ul_amrc">
-<li><a href="http://webenlance.com">Home</a></li>
-<li><a href="http://webenlance.com">About</a></li>
-<li><a href="http://webenlance.com">Services</a></li>
-<li><a href="http://webenlance.com">Pricing</a></li>
-<li><a href="http://webenlance.com">Blog</a></li>
-<li><a href="http://webenlance.com">Contact</a></li>
-</ul>
 <!--foote_bottom_ul_amrc ends here-->
 <p class="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
 
