@@ -88,7 +88,6 @@ foreach ($result as $row) {
         'value' => $row['title']
     );
 }
-
 $mysqli->close();
 ?>
 
@@ -107,54 +106,81 @@ $mysqli->close();
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <script src="library/autoComplete.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
     <?php require "header.php"; ?>
     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner welcome-part">
+        <div class="carousel-inner welcome-part align-self-center">
             <div class="carousel-item welcome-image active" width="100%">
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
-            <div class="carousel-text text-white d-flex justify-content-center">
-                <h1>WELCOME,
+            <div class="carousel-item welcome-image active" width="100%">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-item welcome-image active" width="100%">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-text mt-5 text-white d-flex justify-content-evenly vstack align-items-center">
+                <h1 class="">WELCOME,
                     <?php echo ucfirst($username); ?>
                 </h1>
             </div>
         </div>
     </div>
-    <div class="container-fluid p-0">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner quote-part">
-                <div class="carousel-item quote-image active" data-bs-interval="5000">
-                    <img src="asset/quote1.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item quote-image" style="background-color: #24324f;" data-bs-interval="5000">
-                    <img src="asset/quote2.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
+        <!-- <div class="text" style="z-index: 15;"> -->
         <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
         <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
-        <span class="d-flex justify-content-center mb-3">
-            <form class="d-flex me-2 w-50" role="search">
-                <div class="input-group">
-                    <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off"
-                       >
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                        </svg></button>
-                </div>
-            </form>
+        <!-- </div> -->
+        <span class="d-flex w-50 mx-auto justify-content-center mb-3">
+            <div class="input-group">
+                <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off">
+                <button class="btn btn-outline-primary" id="button-search"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg></button>
+            </div>
         </span>
-        <div class="row">
+        <div class="filter-button mb-5 d-flex justify-content-center w-50 mx-auto">
+            <ul class="list-group list-group-horizontal" style="list-style-type: none;">
+                <li><button type="button" class="btn btn-primary All me-2" aria-pressed="false">All</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Fantasy me-2" aria-pressed="false">Fantasy</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Science me-2" aria-pressed="false">Science
+                        Fiction</button></li>
+                <li><button type="button" class="btn btn-primary Action me-2" aria-pressed="false">Action &
+                        Adventure</button></li>
+                <li><button type="button" class="btn btn-primary Mystery me-2" aria-pressed="false">Mystery</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Horror me-2" aria-pressed="false">Horror</button></li>
+                <li><button type="button" class="btn btn-primary Thriller me-2" aria-pressed="false">Thriller &
+                        Suspense</button></li>
+                <li><button type="button" class="btn btn-primary Romance me-2" aria-pressed="false">Romance</button>
+                </li>
+                <li><button type="button" class="btn btn-primary Biography me-2" aria-pressed="false">Biography</button>
+                </li>
+                <li><button type="button" class="btn btn-primary History me-2" aria-pressed="false">History</button>
+                </li>
+            </ul>
+        </div>
+        <div class='d-flex justify-content-center'>
+            <?php
+            if (isset($_SESSION['success_message'])) {
+                echo "<div class='d-flex justify-content-center w-50 alert alert-success' role='alert'>";
+                echo $_SESSION['success_message'];
+                echo "</div>";
+
+                // Clear the session variable to avoid displaying the message again on page refresh
+                unset($_SESSION['success_message']);
+            }
+            ?>
+        </div>
+        <div class="row book-result hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
             <div class="col-12 hstack">
                 <?php foreach ($books as $book): ?>
@@ -193,12 +219,12 @@ $mysqli->close();
                                                 <div class="modal-footer">
                                                     <button type="button" style="color: blue; align-items: center;"
                                                         class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                                    <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">
-                                                        <button type="button" class="btn btn-primary"
-                                                            onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
-                                                            Borrow Book
-                                                        </button>
-                                                    </a>
+                                                      
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
+                                                        Borrow Book
+                                                    </button>
+                                                </a>    
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +251,249 @@ $mysqli->close();
             maximumItems: 10,
             highlightTyped: true,
             highlightClass: 'fw-bold text-primary'
-        }); 
+        });
+
+        var inputButton;
+        var F = $(".Fantasy").attr("aria-pressed");
+        var S = $(".Science").attr("aria-pressed");
+        var H = $(".History").attr("aria-pressed");
+        var B = $(".Biography").attr("aria-pressed");
+        var R = $(".Romance").attr("aria-pressed");
+        var T = $(".Thriller").attr("aria-pressed");
+        var Ho = $(".Horror").attr("aria-pressed");
+        var A = $(".Action").attr("aria-pressed");
+        var M = $(".Mystery").attr("aria-pressed");
+
+        $(".All").click(function () {
+            // if (F == "false") {
+            inputButton = "ready"
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Fantasy").click(function () {
+            // if (F == "false") {
+            inputButton = "Fantasy"
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Science").click(function () {
+            // if (S == "false") {
+            inputButton = "Science";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Action").click(function () {
+            // if (A == "false") {
+            inputButton = "Action";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Mystery").click(function () {
+            // // if (M == "false") {
+            //     M = "true";
+            //     $(".Mystery").attr("aria-pressed", M);
+            inputButton = "Mystery";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Horror").click(function () {
+            // // if (Ho == "false") {
+            //     Ho = "true";
+            //     $(".Horror").attr("aria-pressed", Ho);
+            inputButton = "Horror";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Thriller").click(function () {
+            // // if (T == "false") {
+            //     T = "true";
+            //     $(".Thriller").attr("aria-pressed", T);
+            inputButton = "Thriller";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Romance").click(function () {
+            // // if (R == "false") {
+            //     R = "true";
+            //     $(".Romance").attr("aria-pressed", R);
+            inputButton = "Romance";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".Biography").click(function () {
+            // // if (B == "false") {
+            //     $(".Biography").attr("aria-pressed", B);
+            inputButton = "Biography";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+        $(".History").click(function () {
+            // if (H == "false") {
+            inputButton = "History";
+            $.ajax({
+                url: "showBooks.php",
+                method: "POST",
+                data: { inputButton: inputButton },
+
+                success: function (data) {
+                    $('.book-result').html(data);
+                    $('.book-result').css("display", "block");
+                }
+            });
+            // }
+        })
+
+
+        $(document).ready(function () {
+            var input = "ready";
+            <?php if (isset($_SESSION['username'])) { ?>
+                $.ajax({
+                    url: "showBooks.php",
+                    method: "POST",
+                    data: { input: input },
+
+                    success: function (data) {
+                        $('.book-result').html(data);
+                        $('.book-result').css("display", "block");
+                    }
+                });
+            <?php } ?>
+            $("#searchBook").keyup(function () {
+                input = $(this).val();
+                if (input != "") {
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+                } else {
+                    input = "ready";
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+                }
+            });
+            $("#button_search").click(function () {
+                input = $(this).val();
+                if (input != "") {
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $("#searchBook").val(input);
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+                } else {
+                    $('.book-result').css("display", "none");
+                }
+            });
+        });
     </script>
 
 </body>
