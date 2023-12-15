@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&family=Patua+One&display=swap');
+
 .welcome-part .welcome-image>img {
     -webkit-animation: thing 30s;
     -o-animation: thing 30s;
@@ -15,7 +17,8 @@
 }
 
 .welcome-part {
-    height: 70vh;
+    width: 33.3%;
+    height: 80vh;
 }
 
 .welcome-image img {
@@ -31,14 +34,20 @@
     height: 100%;
 }
 
+.uts {
+    font-family: 'Patua One', serif;
+}
+
 .carousel-text h1{
-    height: 500px;
     z-index: 10;
 }
 
 .carousel-text {
-    align-items: center !important;
-    padding-top: 225px;
+    /* align-items: center !important; */
+    /* padding-top: 225px; */
+    height: 100%;
+    font-family: 'Patua One', serif;
+    font-size: 10px;
 }
 
 .quote-part {
