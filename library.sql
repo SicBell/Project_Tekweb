@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 09:43 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 15, 2023 at 05:03 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,12 +69,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
-(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan'),
-(4, 'James', 'scunt1.png', 'bruh', '2023-12-14', 'romance', 'ready', 'kkk'),
-(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'ready', '23j3eij2e'),
-(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'ready', 'dsds'),
-(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'ready', 'wwwe');
+(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'available', 'Harry Potter and the Goblet of Fire is an enchanting fantasy novel by J.K. Rowling. It follows Harry\'s fourth year at Hogwarts School, where he competes in a dangerous tournament and uncovers a dark plot threatening the wizarding world.'),
+(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'available', 'The story itself will revolve around the relationship between Zea (Cut Beby Tsabina) and Ares (Angga Yunanda). Their meeting began when Zea tried to get to know Ares, who is the leader of Calderioz. Not without reason, but because he wanted to further investigate a tragic incident involving his brother. However, without realizing it, his efforts to get to know Ares actually made the two of them involved in a love relationship.\n'),
+(4, 'James', 'scunt1.png', 'bruh', '2023-12-14', 'romance', 'available', 'Scout is cunt'),
+(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'available', 'He is Dilanku 1990 edition 1 in light blue with the character Dilan and his motorbike on the cover. Well, the picture of Dilan wearing a high school uniform in a very relaxed style on the cover was illustrated by the writer Pidi Baiq himself. The picture on the cover characterizes the contents of the novel which depicts teenage life. Below Dilan\'s picture is Pidi Baiq\'s quote, adding an interesting impression to the cover.'),
+(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'available', 'The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin\'s Company, on a quest to reclaim the dwarves\' home and treasure from the dragon Smaug.'),
+(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'available', 'Like the first book of the series, Percy Jackson and the Olympians follows Percy Jackson, a troubled middle school student who learns that all the Greek myths he grew up hearing are real, and that his mysterious absent father is actually one of those gods.');
 
 -- --------------------------------------------------------
 
