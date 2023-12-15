@@ -61,6 +61,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light rounded-1" href="borrowed_book.php">Log</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light rounded-1" href="history_borrow.php">History</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle rounded-1" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -83,47 +86,15 @@
                     <a href="Index.php" class="me-2">Go to Index Page</a>
                 <?php } ?>
                 <br><br>
+                </ul>
                 <a href="Profile.php"><img class="rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">
-                    <a class="active text rounded-1 sign-out p-1" aria-current="page" href="logout.php">SignOut</a>
+                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="logout.php">SignOut</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light rounded-1" href="borrowed_book.php">Log</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light rounded-1" href="history_borrow.php">History</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle rounded-1" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['page_name'] == 'index.php') { ?>
-                <a href="Admin_page.php" class="me-2">Go to Admin Page</a>
-            <?php } ?>
-            <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['page_name'] == 'admin_page.php') { ?>
-                <a href="Index.php" class="me-2">Go to Index Page</a>
-            <?php } ?>
-            <a href="Profile.php"><img class="rounded-circle"
-                    src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40" height="40"
-                    class="align-text-center"></a>
-            <li class="nav-item d-flex align-items-center">
-                <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="logout.php">SignOut</a>
-            </li>
 
-        </div>
+            </div>
     </nav>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

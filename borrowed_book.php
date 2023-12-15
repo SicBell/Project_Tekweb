@@ -54,10 +54,7 @@ $mysqli->close();
                         <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
                         <button class="btn btn-danger" type="submit" name="return">Return</button>
                     </form>
-                    <form action="borrowBook.php" method="post" style="display: inline;">
-                        <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
-                        <button class="btn btn-success" type="submit" name="borrow">Borrow</button>
-                    </form>
+                    
                 </li>
             <?php endforeach; ?>
         </ul>
