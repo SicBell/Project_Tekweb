@@ -15,7 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bookId = $_POST['book_id'];
         $username = $_SESSION['username'];
 
-        $maxAllowedDate = date("Y-m-d", strtotime("+7 days")); 
+        // Ensure you have a valid return date in your form
+        $returnDate = $_POST['return_date'];
+
+        $maxAllowedDate = date("Y-m-d", strtotime("+7 days"));
 
         if (strtotime($returnDate) > strtotime($maxAllowedDate)) {
             echo json_encode(["error" => "Return date exceeds the maximum allowed date"]);

@@ -61,6 +61,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-light rounded-1" href="borrowed_book.php">Log</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light rounded-1" href="history_borrow.php">History</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle rounded-1" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
