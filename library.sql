@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2023 at 10:08 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Dec 14, 2023 at 07:01 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,6 +72,22 @@ INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genr
 (1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
 (2, 'james', 'scunt1.png', '123', '2023-12-01', 'Mystery', 'ready', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_borrowed_books`
+--
+
+CREATE TABLE `user_borrowed_books` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `book_id` int(11) DEFAULT NULL,
+  `book_title` varchar(255) NOT NULL,
+  `borrow_date` date DEFAULT NULL,
+  `return_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -90,6 +106,14 @@ ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_borrowed_books`
+--
+ALTER TABLE `user_borrowed_books`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -104,6 +128,23 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `books`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user_borrowed_books`
+--
+ALTER TABLE `user_borrowed_books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user_borrowed_books`
+--
+ALTER TABLE `user_borrowed_books`
+  ADD CONSTRAINT `user_borrowed_books_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts` (`Id`),
+  ADD CONSTRAINT `user_borrowed_books_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
