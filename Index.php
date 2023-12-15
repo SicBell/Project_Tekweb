@@ -180,7 +180,7 @@ $mysqli->close();
             }
             ?>
         </div>
-        <div class="row book-result hstack d-flex justify-content-center">
+        <div class="row book-result mb-3 hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
             <div class="col-12 hstack">
                 
@@ -305,7 +305,7 @@ $mysqli->close();
 
         $(".All").click(function () {
             // if (F == "false") {
-            inputButton = "ready"
+            inputButton = "available"
             $.ajax({
                 url: "showBooks.php",
                 method: "POST",
@@ -474,7 +474,7 @@ $mysqli->close();
 
 
         $(document).ready(function () {
-            var input = "ready";
+            var input = "available";
             <?php if (isset($_SESSION['username'])) { ?>
                 $.ajax({
                     url: "showBooks.php",
@@ -501,7 +501,7 @@ $mysqli->close();
                         }
                     });
                 } else {
-                    input = "ready";
+                    input = "available";
                     $.ajax({
                         url: "showBooks.php",
                         method: "POST",
