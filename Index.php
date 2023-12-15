@@ -279,9 +279,9 @@ $mysqli->close();
 <!--headin5_amrc ends here-->
 
 <ul class="footer_ul2_amrc">
-<li><a href="https://wa.me/0817333434" target="_blank"> <img src="asset/whatsapp_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
-<li><a href="https://www.instagram.com/ui_library/?hl=en" target="_blank"> <img src="asset/instagram_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
-<li><a href="https://twitter.com/UI_library" target="_blank"> <img src="asset/x_icon.png" alt="Logo" width="40" height="40" class="align-text-center"></a></p></li>
+<li><a href="https://wa.me/0817333434" target="_blank"> <img src="asset/whatsapp_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
+<li><a href="https://www.instagram.com/ui_library/?hl=en" target="_blank"> <img src="asset/instagram_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
+<li><a href="https://twitter.com/UI_library" target="_blank"> <img src="asset/x_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
 </ul>
 <!--footer_ul2_amrc ends here-->
 </div>
@@ -290,13 +290,6 @@ $mysqli->close();
 
 <!--foote_bottom_ul_amrc ends here-->
 <p class="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
-
-<ul class="social_footer_ul">
-<li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
-</ul>
 <!--social_footer_ul ends here-->
 </div>
 
