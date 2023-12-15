@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 09:43 AM
+-- Generation Time: Dec 15, 2023 at 03:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,7 @@ CREATE TABLE `accounts` (
   `email` varchar(255) NOT NULL,
   `password` varchar(200) NOT NULL,
   `user_type` varchar(10) DEFAULT 'user',
+  `admin_type` varchar(25) NOT NULL DEFAULT 'super',
   `reset_token_hash` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -42,10 +43,10 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`Id`, `profile_pic`, `username`, `email`, `password`, `user_type`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'SicBell657bc528874477.02156380.png', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', NULL, NULL),
-(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'user', '9564d66036de9456dfbbd4eabae48503c3349a25c58c3245fd64bcc54d406ea9', '2023-12-15 04:58:07'),
-(3, 'Kevin656c73aba72553.44041931.jpg', 'Kevin', 'kevin@gmail.com', '123', 'user', NULL, NULL);
+INSERT INTO `accounts` (`Id`, `profile_pic`, `username`, `email`, `password`, `user_type`, `admin_type`, `reset_token_hash`, `reset_token_expires_at`) VALUES
+(1, 'SicBell657bc528874477.02156380.png', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', 'super', NULL, NULL),
+(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'admin', 'member', '9564d66036de9456dfbbd4eabae48503c3349a25c58c3245fd64bcc54d406ea9', '2023-12-15 04:58:07'),
+(3, 'Kevin657c60cc372942.06198740.png', 'Kevin', 'kevin@gmail.com', '123', 'user', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,7 @@ CREATE TABLE `books` (
   `pengarang` varchar(255) NOT NULL,
   `tahun_terbit` date NOT NULL,
   `genre` varchar(255) NOT NULL,
-  `book_status` varchar(10) NOT NULL DEFAULT 'ready',
+  `book_status` varchar(10) NOT NULL DEFAULT 'available',
   `sinopsis` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,12 +70,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'ready', 'TESTING 123 123'),
-(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'ready', 'cogan'),
-(4, 'James', 'scunt1.png', 'bruh', '2023-12-14', 'romance', 'ready', 'kkk'),
-(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'ready', '23j3eij2e'),
-(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'ready', 'dsds'),
-(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'ready', 'wwwe');
+(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'available', 'TESTING 123 123'),
+(3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'available', 'cogan'),
+(4, 'Matahari', 'Matahari.jpg', 'Tere Liye', '2023-12-14', 'History', 'available', 'kkk'),
+(5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'available', '23j3eij2e'),
+(6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'available', 'dsds'),
+(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'available', 'wwwe');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `user_borrowed_books`
 --
 ALTER TABLE `user_borrowed_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
