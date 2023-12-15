@@ -49,9 +49,6 @@ if (!($error === 0) && isset($_POST['username'])) {
     }
 }
 
-$username = $_SESSION['username'];
-// $password = $_SESSION['password'];
-
 $sql = "SELECT * FROM accounts WHERE username ='$username'";
 $result = mysqli_query($mysqli, $sql);
 $row;

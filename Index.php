@@ -78,7 +78,7 @@ if ($result->num_rows > 0) {
 }
 
 $q = "SELECT title FROM books ORDER BY title";
-$result = mysqli_query($mysqli, $sql);
+$result = mysqli_query($mysqli, $q);
 
 $data = array();
 
