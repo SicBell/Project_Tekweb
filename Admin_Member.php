@@ -188,36 +188,51 @@ if ($mysqli->connect_error) {
             </div>
         </div>
     </div>
-    <script>
-        function displayEnlargedImg(imgPath) {
-            var modal = document.getElementById('imageModal');
-            var img = document.getElementById('enlargedImg');
+</body>
+<script>
+    function displayEnlargedImg(imgPath) {
+        var modal = document.getElementById('imageModal');
+        var img = document.getElementById('enlargedImg');
 
-            // Set the image source to the clicked image path
-            img.src = imgPath;
+        // Set the image source to the clicked image path
+        img.src = imgPath;
 
-            // Show the modal
-            modal.style.display = 'block';
+        // Show the modal
+        modal.style.display = 'block';
+    }
+
+    var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
+        data: <?php echo json_encode($data); ?>,
+        maximumItems: 10,
+        highlightTyped: true,
+        highlightClass: 'fw-bold text-primary'
+    });
+
+    // Close the modal when clicking outside the image
+    window.onclick = function (event) {
+        var modal = document.getElementById('imageModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
+    };
 
-        var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
-            data: <?php echo json_encode($data); ?>,
-            maximumItems: 10,
-            highlightTyped: true,
-            highlightClass: 'fw-bold text-primary'
-        });
+    $(document).ready(function () {
+        var input = "user";
+        <?php if (isset($_SESSION['username'])) { ?>
+            $.ajax({
+                url: "search_user.php",
+                method: "POST",
+                data: { input: input },
 
-        // Close the modal when clicking outside the image
-        window.onclick = function (event) {
-            var modal = document.getElementById('imageModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-
-        $(document).ready(function () {
-            var input = "user";
-            <?php if (isset($_SESSION['username'])) { ?>
+                success: function (data) {
+                    $('.acc-result').html(data);
+                    $('.acc-result').css("display", "block");
+                }
+            });
+        <?php } ?>
+        $("#searchUser").keyup(function () {
+            input = $(this).val();
+            if (input != "") {
                 $.ajax({
                     url: "search_user.php",
                     method: "POST",
@@ -228,54 +243,39 @@ if ($mysqli->connect_error) {
                         $('.acc-result').css("display", "block");
                     }
                 });
-            <?php } ?>
-            $("#searchUser").keyup(function () {
-                input = $(this).val();
-                if (input != "") {
-                    $.ajax({
-                        url: "search_user.php",
-                        method: "POST",
-                        data: { input: input },
+            } else {
+                input = "user";
+                $.ajax({
+                    url: "search_user.php",
+                    method: "POST",
+                    data: { input: input },
 
-                        success: function (data) {
-                            $('.acc-result').html(data);
-                            $('.acc-result').css("display", "block");
-                        }
-                    });
-                } else {
-                    input = "user";
-                    $.ajax({
-                        url: "search_user.php",
-                        method: "POST",
-                        data: { input: input },
-
-                        success: function (data) {
-                            $('.acc-result').html(data);
-                            $('.acc-result').css("display", "block");
-                        }
-                    });
-                }
-            });
-            $("#button_search").click(function () {
-                input = $("#searchUser").val();
-                if (input != "") {
-                    $.ajax({
-                        url: "search_user.php",
-                        method: "POST",
-                        data: { input: input },
-
-                        success: function (data) {
-                            $("#searchUser").val(input);
-                            $('.acc-result').html(data);
-                            $('.acc-result').css("display", "block");
-                        }
-                    });
-                } else {
-                    $('.acc-result').css("display", "none");
-                }
-            });
+                    success: function (data) {
+                        $('.acc-result').html(data);
+                        $('.acc-result').css("display", "block");
+                    }
+                });
+            }
         });
-    </script>
-</body>
+        $("#button_search").click(function () {
+            input = $("#searchUser").val();
+            if (input != "") {
+                $.ajax({
+                    url: "search_user.php",
+                    method: "POST",
+                    data: { input: input },
+
+                    success: function (data) {
+                        $("#searchUser").val(input);
+                        $('.acc-result').html(data);
+                        $('.acc-result').css("display", "block");
+                    }
+                });
+            } else {
+                $('.acc-result').css("display", "none");
+            }
+        });
+    });
+</script>
 
 </html>
