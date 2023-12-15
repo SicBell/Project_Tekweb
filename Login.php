@@ -17,6 +17,7 @@ if (isset($_POST["Login"])) {
     $_SESSION['username'] = $username;
     $_SESSION['user_type'] = $row['user_type'];
     $_SESSION['profile_pic'] = $row['profile_pic'];
+    $_SESSION['admin_type'] = $row['admin_type'];
 
     header("Location: Index.php");
     exit();
