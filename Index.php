@@ -159,7 +159,7 @@ $mysqli->close();
         </div>    
         <div class="row">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
-            <div class="col-12 hstack book-result">
+            <div class="col-12 hstack book-result d-flex justify-content-center">
                 
             </div>
         </div>
@@ -272,10 +272,21 @@ $mysqli->close();
         });
 
         $(document).ready(function () {
-            $("#searchBook").keyup(function () {
-                var input = $(this).val();
-                // alert(input);
+            var input = "ready";
+            <?php if (isset($_SESSION['username'])) {?>
+                $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
 
+                        success: function (data) {
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
+            <?php }?>
+            $("#searchBook").keyup(function () {
+                input = $(this).val();
                 if (input != "") {
                     $.ajax({
                         url: "showBooks.php",
@@ -288,13 +299,21 @@ $mysqli->close();
                         }
                     });
                 } else {
-                    $('.book-result').css("display", "none");
+                    input = "ready";
+                    $.ajax({
+                        url: "showBooks.php",
+                        method: "POST",
+                        data: { input: input },
+
+                        success: function (data) {
+                            $('.book-result').html(data);
+                            $('.book-result').css("display", "block");
+                        }
+                    });
                 }
             });
             $("#button_search").click(function () {
-                var input = $(this).val();
-                // alert(input);
-
+                input = $(this).val();
                 if (input != "") {
                     $.ajax({
                         url: "showBooks.php",
