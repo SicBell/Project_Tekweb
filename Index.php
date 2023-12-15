@@ -159,7 +159,7 @@ $mysqli->close();
                 <?php foreach ($books as $book): ?>
                     <?php if ($book['book_status'] !== 'borrowed'): ?>
                         <!-- <div class="col-lg-4 col-md-3 col-sm-6"> -->
-                        <div class="col-4 me-2">
+                        <div class="col-3 me-2">
                             <div class="card">
                                 <img data-bs-target="#book<?php echo $book['id']; ?>" data-bs-toggle="modal"
                                     src="img/<?php echo $book['gambar']; ?>" class="card-img-top" alt="...">

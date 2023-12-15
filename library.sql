@@ -78,15 +78,15 @@ INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genr
 -- Table structure for table `user_borrowed_books`
 --
 
-CREATE TABLE `user_borrowed_books` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `username` varchar(255) NOT NULL,
-  `book_id` int(11) DEFAULT NULL,
-  `book_title` varchar(255) NOT NULL,
-  `borrow_date` date DEFAULT NULL,
-  `return_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CREATE TABLE `user_borrowed_books` (
+    `id` int(11) NOT NULL,
+    `user_id` int(11) DEFAULT NULL,
+    `username` varchar(255) NOT NULL,
+    `book_id` int(11) DEFAULT NULL,
+    `book_title` varchar(255) NOT NULL,
+    `borrow_date` date DEFAULT NULL,
+    `return_date` date NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables

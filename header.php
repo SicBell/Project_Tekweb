@@ -79,6 +79,8 @@
                 <a href="Profile.php"><img class="rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
+                        
+                <a href=""></a>
                 <li class="nav-item d-flex align-items-center">
                     <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="logout.php">SignOut</a>
                 </li>
