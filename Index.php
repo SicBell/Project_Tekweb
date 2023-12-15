@@ -114,37 +114,33 @@ $mysqli->close();
 <body>
     <?php require "header.php"; ?>
     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner welcome-part">
+        <div class="carousel-inner welcome-part align-self-center">
             <div class="carousel-item welcome-image active" width="100%">
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
-            <div class="carousel-text text-white d-flex justify-content-center">
-                <h1>WELCOME,
+            <div class="carousel-item welcome-image active" width="100%">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-item welcome-image active" width="100%">
+                <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
+            </div>
+            <div class="carousel-text mt-5 text-white d-flex justify-content-evenly vstack align-items-center">
+                <h1 class="">WELCOME,
                     <?php echo ucfirst($username); ?>
                 </h1>
             </div>
         </div>
     </div>
-    <div class="container-fluid p-0">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner quote-part">
-                <div class="carousel-item quote-image active" data-bs-interval="5000">
-                    <img src="asset/quote1.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item quote-image" style="background-color: #24324f;" data-bs-interval="5000">
-                    <img src="asset/quote2.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
-        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
-        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
+        <!-- <div class="text" style="z-index: 15;"> -->
+            <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
+            <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
+        <!-- </div> -->
         <span class="d-flex justify-content-center mb-3">
             <form class="d-flex me-2 w-50" role="search">
                 <div class="input-group">
-                    <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off"
-                       >
+                    <input class="form-control" type="text" id="searchBook" placeholder="Search Book"
+                        autocomplete="off">
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
