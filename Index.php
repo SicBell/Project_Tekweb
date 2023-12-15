@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header("Location: Login_Page.php");
+    exit;
+}
+
 require "db_connect.php";
 
 if (isset($_POST['username']) || isset($_POST['email']) || isset($_POST['emailUser']) || isset($_FILES['profilePic'])) {
@@ -139,7 +144,7 @@ $mysqli->close();
             <form class="d-flex me-2 w-50" role="search">
                 <div class="input-group">
                     <input class="form-control" type="text" id="searchBook" placeholder="Search Book" autocomplete="off"
-                        aria-describedby="button-addon2" data-filter="data.json">
+                       >
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
