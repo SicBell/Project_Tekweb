@@ -153,6 +153,18 @@ $mysqli->close();
                 </div>
             </form>
         </span>
+        <div class='d-flex justify-content-center'>
+        <?php
+            if (isset($_SESSION['success_message'])) {
+                echo "<div class='d-flex justify-content-center w-50 alert alert-success' role='alert'>";
+                echo $_SESSION['success_message'];
+                echo "</div>";
+            
+                // Clear the session variable to avoid displaying the message again on page refresh
+                unset($_SESSION['success_message']);
+            } 
+            ?>
+        </div>    
         <div class="row">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
             <div class="col-12 hstack">
@@ -192,7 +204,7 @@ $mysqli->close();
                                                 <div class="modal-footer">
                                                     <button type="button" style="color: blue; align-items: center;"
                                                         class="btn btn-primary" data-bs-dismiss="modal">Close Window</button>
-                                                <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">        
+                                                      
                                                     <button type="button" class="btn btn-primary"
                                                         onclick="redirectToBorrowForm(<?php echo $book['id']; ?>)">
                                                         Borrow Book

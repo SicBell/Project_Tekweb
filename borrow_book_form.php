@@ -12,6 +12,9 @@ $result = mysqli_query($mysqli, $sql);
 if ($result && mysqli_num_rows($result) == 1) {
     $book = mysqli_fetch_assoc($result);
 
+    // Calculate the maximum date (20 days from now)
+    $maxDate = date("Y-m-d", strtotime("+7 days"));
+
     // Display book details in a card
     echo "<div class='card' style='width: 18rem;'>";
     echo "<img src='img/{$book['gambar']}' class='card-img-top' alt='{$book['title']}'>";
@@ -21,8 +24,21 @@ if ($result && mysqli_num_rows($result) == 1) {
     echo "<p class='card-text'>Synopsis: {$book['sinopsis']}</p>";
     echo "<p class='card-text'>Genre: {$book['genre']}</p>";
     echo "<p class='card-text'>Publication Year: {$book['tahun_terbit']}</p>";
-    // ... Add other attributes you want to display
+
+    // Form to initiate the borrowing process with Return Date input
+    echo "<form action='borrowBook.php' method='post'>";
+    echo "<input type='hidden' name='book_id' value='{$book['id']}'>";
+
+    // Add Return Date input with max attribute
+    echo "<div class='mb-3'>";
+    echo "<label for='returnDate' class='form-label'>Return Date</label>";
+    echo "<input type='date' class='form-control' id='returnDate' name='return_date' required max='{$maxDate}'>";
     echo "</div>";
+
+    // Add Borrow button
+    echo "<button type='submit' class='btn btn-primary' name='borrow'>Borrow</button>";
+    echo "</form>";
+
     echo "</div>";
 
     // You can also add a form or button for the user to proceed with borrowing
