@@ -59,9 +59,11 @@
                             <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
                         </li>
                     <?php } ?>
+                    <?php if ($_SESSION['user_type'] == 'user') { ?>
                     <li class="nav-item ms-">
                         <a class="nav-link text-dark rounded-1" href="history_borrow.php">History</a>
                     </li>
+                    <?php } ?>
                 </ul>
                 <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
                     <a href="Admin_member.php" class="me-2">Go to Member Admin Page</a>
@@ -73,7 +75,7 @@
                     <a href="Index.php" class="me-2">Go to Index Page</a>
                 <?php } ?>
                 <br>
-                <a href="Profile.php"><img class="rounded-circle"
+                <a href="Profile.php"><img class="object-fit-cover rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">
