@@ -41,12 +41,10 @@ if (isset($_POST['input'])) {
                                     <div class="modal-footer">
                                         <button type="button" style="color: blue; align-items: center;" class="btn btn-primary"
                                             data-bs-dismiss="modal">Close Window</button>
-                                        <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="redirectToBorrowForm(<?php echo $row['id']; ?>)">
-                                                Borrow Book
-                                            </button>
-                                        </a>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="redirectToBorrowForm(<?php echo $row['id']; ?>)">
+                                            Borrow Book
+                                        </button>
                                     </div>
                                 </div>
                             </div>
