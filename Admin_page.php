@@ -136,7 +136,7 @@ if ($mysqli->connect_error) {
 <body>
     <div class="container">
         <div class="row mt-5">
-            <form class="d-flex" role="search" action="search_book.php" method="GET">
+            <form class="d-flex mt-5" role="search" action="search_book.php" method="GET">
                 <input class="form-control me-2" type="search" placeholder="Search by Title" aria-label="Search"
                     name="search_query">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -208,7 +208,7 @@ if ($mysqli->connect_error) {
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Ubah</a>
-                                        <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"
+                                        <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn mt-2 btn-danger"
                                             onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
                                     </td>
                                 </tr>
