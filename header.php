@@ -43,7 +43,7 @@
         <div class="container-fluid" style="background-color: #F4BF96;">
             <a class="navbar-brand me-1" href="#">
                 <img src="asset/navbar-icon.png" alt="Logo" width="40" height="40" class="align-text-center">
-                <a class="text-decoration-none ps-0" href="#">
+                <a class="text-decoration-none ps-0" href="index.php">
                     <h4>YourLibrary</h4>
                 </a>
             </a>
