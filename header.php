@@ -40,7 +40,7 @@
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary py-0">
-        <div class="container-fluid" style="background-color: #F4BF96;">
+        <div class="container-fluid" style="background-color: #fab987;">
             <a class="navbar-brand me-1" href="#">
                 <img src="asset/navbar-icon.png" alt="Logo" width="40" height="40" class="align-text-center">
                 <a class="text-decoration-none ps-0" href="index.php">
@@ -54,10 +54,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="ms-2 nav-item">
-                        <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
-                    </li>
-                    <li class="nav-item">
+                    <?php if ($_SESSION['user_type'] == 'admin') { ?>
+                        <li class="ms-2 nav-item">
+                            <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
+                        </li>
+                    <?php } ?>
+                    <li class="nav-item ms-">
                         <a class="nav-link text-dark rounded-1" href="history_borrow.php">History</a>
                     </li>
                 </ul>

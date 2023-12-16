@@ -11,6 +11,21 @@ $result = mysqli_query($mysqli, $sql);
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
+    header("Location: login_page.php");
+    exit();
+}
+
+require "db_connect.php";
+
+$username = $_SESSION['username'];
+
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +45,9 @@ $result = mysqli_query($mysqli, $sql);
     </style>
 </head>
 
-<body>
+<body style ="background-color : #4cb6b6;">
     <?php
+    require "header.php";
     // Check if the query was successful
     if ($result && mysqli_num_rows($result) == 1) {
         $book = mysqli_fetch_assoc($result);
@@ -40,12 +56,12 @@ $result = mysqli_query($mysqli, $sql);
         $maxAllowedDate = date("Y-m-d", strtotime("+7 days"));
         ?>
         <div class="container d-flex justify-content-center">
-            <div class="card my-3" style="width: 75%;">
+            <div class="card my-3" style="width: 75%; padding: 50px 0 0 0; background-color: #99d5d5;">
                 <h1 class="align-self-center mt-2 card-title">
                     <?php echo $book['title'] ?>
                 </h1>
                 <img class="d-flex align-self-center mt-3" src="img/<?php echo $book['gambar'] ?>"
-                    style="width: 50%; height: 55%;" alt="<?php echo $book['title'] ?>">
+                    style="max-width: 50%; max height: 50%;" alt="<?php echo $book['title'] ?>">
                 <div class="card-body pb-2 d-flex vstack text-center">
                     <span class="hstack d-flex justify-content-evenly">
                         <a class="fs-4 fw-bold text-decoration-none default" id="pengarang" role="button">Pengarang</a>
@@ -68,13 +84,14 @@ $result = mysqli_query($mysqli, $sql);
                         </h4>
                     </span>
                     <form class="mt-5" action='borrowBook.php' method='post'>
-                    <input type='hidden' name='book_id' value='<?php echo $book['id']; ?>'>
+                        <input type='hidden' name='book_id' value='<?php echo $book['id']; ?>'>
                         <div class='mb-3 d-flex justify-content-center vstack'>
                             <label for='returnDate' class='form-label'>Return Date</label>
                             <input type='date' class='form-control d-flex align-self-center w-50' id='returnDate'
                                 name='return_date' required max='<?php echo $maxAllowedDate ?>'>
                         </div>
-                        <button type='submit' style="background-color: #5a4637; border-color: #5a4637;" class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
+                        <button type='submit' style="background-color: #5a4637; border-color: #5a4637;"
+                            class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
                     </form>
                 </div>
             </div>
@@ -123,7 +140,9 @@ $result = mysqli_query($mysqli, $sql);
                 $('#type').css("display", "none");
                 $('#year').css("display", "block");
             })
+            mysqli_close($mysqli);
         </script>
+
         <?php
         // You can also add a form or button for the user to proceed with borrowing
     } else {
@@ -132,7 +151,7 @@ $result = mysqli_query($mysqli, $sql);
     }
 
     // Close the database connection
-    mysqli_close($mysqli);
+    
     ?>
 </body>
 

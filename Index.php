@@ -110,7 +110,7 @@ $mysqli->close();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body style = "background-color: #fac9a2">
     <?php require "header.php"; ?>
     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner welcome-part align-self-center">
@@ -447,7 +447,7 @@ $mysqli->close();
     </script>
 
 </body>
-<footer class="footer">
+<footer class="footer" style = "background-color: #fab987">
 <div class="container bottom_border">
 <div class="row">
 <div class=" col-sm-4 col-md col-sm-4  col-12 col">
