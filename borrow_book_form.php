@@ -84,13 +84,14 @@ $username = $_SESSION['username'];
                         </h4>
                     </span>
                     <form class="mt-5" action='borrowBook.php' method='post'>
-                    <input type='hidden' name='book_id' value='<?php echo $book['id']; ?>'>
+                        <input type='hidden' name='book_id' value='<?php echo $book['id']; ?>'>
                         <div class='mb-3 d-flex justify-content-center vstack'>
                             <label for='returnDate' class='form-label'>Return Date</label>
                             <input type='date' class='form-control d-flex align-self-center w-50' id='returnDate'
                                 name='return_date' required max='<?php echo $maxAllowedDate ?>'>
                         </div>
-                        <button type='submit' style="background-color: #5a4637; border-color: #5a4637;" class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
+                        <button type='submit' style="background-color: #5a4637; border-color: #5a4637;"
+                            class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
                     </form>
                 </div>
             </div>

@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $updateSql = "UPDATE books SET book_status = 'borrowed' WHERE id = $bookId";
-        echo $_POST['book_id'];
         if (!$mysqli->query($updateSql)) {
             echo json_encode(["error" => "Error updating book status: " . $mysqli->error]);
             exit();

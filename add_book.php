@@ -31,8 +31,7 @@ if (count($_POST) > 0) {
             move_uploaded_file($tmpName, 'img/' . $newImageName);
         }
     }
-
-    // Using prepared statement to prevent SQL injection
+    
     $sql = "INSERT INTO books (`title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `sinopsis`) 
             VALUES (?, ?, ?, ?, ?, ?)";
 
