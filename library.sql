@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 07:59 AM
+-- Generation Time: Dec 16, 2023 at 12:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,7 +34,7 @@ CREATE TABLE `accounts` (
   `email` varchar(255) NOT NULL,
   `password` varchar(200) NOT NULL,
   `user_type` varchar(10) DEFAULT 'user',
-  `admin_type` varchar(25) NOT NULL DEFAULT 'super',
+  `admin_type` varchar(25) DEFAULT NULL,
   `reset_token_hash` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44,9 +44,10 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`Id`, `profile_pic`, `username`, `email`, `password`, `user_type`, `admin_type`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'SicBell657bc528874477.02156380.png', 'SicBell', 'Warrenmiltaico6@gmail.com', 'chynngehtrow', 'admin', 'super', NULL, NULL),
-(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '12345', 'admin', 'member', '9564d66036de9456dfbbd4eabae48503c3349a25c58c3245fd64bcc54d406ea9', '2023-12-15 04:58:07'),
-(3, 'Kevin657c60cc372942.06198740.png', 'Kevin', 'kevin@gmail.com', '123', 'user', '', NULL, NULL);
+(1, 'SicBell657bc528874477.02156380.png', 'SicBell', 'Warrenmiltaico6@gmail.com', '123', 'admin', 'super', NULL, NULL),
+(2, 'Richard65797a9c7a3858.35810725.jpg', 'Richard', 'c14220059@john.petra.ac.id', '123', 'admin', 'member', '9564d66036de9456dfbbd4eabae48503c3349a25c58c3245fd64bcc54d406ea9', '2023-12-15 04:58:07'),
+(5, 'default-pp.jpg', 'Joyce', 'joyce@gmail.com', '12345', 'user', NULL, NULL, NULL),
+(6, 'default-pp.jpg', 'Kevin', 'kevin@gmail.com', '123', 'admin', 'book', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genre`, `book_status`, `sinopsis`) VALUES
-(1, 'Harry Potter', 'Harry Potter.jpg', 'gei', '2023-12-01', 'Romance', 'available', 'Harry Potter and the Goblet of Fire is an enchanting fantasy novel by J.K. Rowling. It follows Harry\'s fourth year at Hogwarts School, where he competes in a dangerous tournament and uncovers a dark plot threatening the wizarding world.'),
+(1, 'Harry Potter', 'Harry Potter.jpg', 'J.K. Rowling', '2023-12-01', 'Romance', 'available', 'Harry Potter and the Goblet of Fire is an enchanting fantasy novel by J.K. Rowling. It follows Harry\'s fourth year at Hogwarts School, where he competes in a dangerous tournament and uncovers a dark plot threatening the wizarding world.'),
 (3, 'Antares', 'Antares.jpg', 'Rweinda', '2023-12-15', 'Action & Adventure', 'available', 'The story itself will revolve around the relationship between Zea (Cut Beby Tsabina) and Ares (Angga Yunanda). Their meeting began when Zea tried to get to know Ares, who is the leader of Calderioz. Not without reason, but because he wanted to further investigate a tragic incident involving his brother. However, without realizing it, his efforts to get to know Ares actually made the two of them involved in a love relationship.\n'),
 (4, 'Matahari', 'tere liye.jpg', 'Tere Liye', '2023-12-14', 'romance', 'available', 'Matahari is sun'),
 (5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'available', 'He is Dilanku 1990 edition 1 in light blue with the character Dilan and his motorbike on the cover. Well, the picture of Dilan wearing a high school uniform in a very relaxed style on the cover was illustrated by the writer Pidi Baiq himself. The picture on the cover characterizes the contents of the novel which depicts teenage life. Below Dilan\'s picture is Pidi Baiq\'s quote, adding an interesting impression to the cover.'),
@@ -129,7 +130,7 @@ ALTER TABLE `user_borrowed_books`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `books`
