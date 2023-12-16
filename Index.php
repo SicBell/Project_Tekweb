@@ -64,7 +64,7 @@ $password = $row['password'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
-$_SESSION['page_name'] = 'index.php';
+$_SESSION['page_name'] = 'Index.php';
 
 // Fetch books from the database
 $sql = "SELECT * FROM books";
@@ -124,7 +124,7 @@ $mysqli->close();
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
             <div class="carousel-text mt-5 text-white d-flex justify-content-evenly vstack align-items-center">
-                <h1 class="">WELCOME,
+                <h1 style="font-size: 3rem;"/h1>WELCOME,
                     <?php echo ucfirst($username); ?>
                 </h1>
             </div>

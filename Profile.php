@@ -146,6 +146,18 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
             <?php
         }
         ?>
+        <div class="mt-3 back-link d-flex justify-content-center">
+            <a href="<?php echo $_SESSION['page_name'] ?>">Go to
+                <?php if ($_SESSION['page_name'] == "Index.php") {
+                    echo "Home Page";
+                } elseif ($_SESSION['page_name'] == "Admin_Member.php") {
+                    echo "Admin Member Page";
+                } else {
+                    echo "Book Admin Page";
+                }
+                ?>
+            </a>
+        </div>
     </div>
     </div>
 </body>

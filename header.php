@@ -12,6 +12,7 @@
     <style>
         .nav-link:hover {
             background-color: cornsilk;
+            color: brown;
             transition: 0.5s;
         }
 
@@ -22,14 +23,11 @@
 
         .nav-link {
             height: 100%;
+            color: white;
         }
 
         a {
             color: #142236;
-        }
-
-        .sign-out {
-            text-decoration: underline;
         }
 
         .container-fluid {
@@ -40,7 +38,7 @@
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary py-0">
-        <div class="container-fluid" style="background-color: #fab987;">
+        <div class="container-fluid" style="background-color: #c6936b;">
             <a class="navbar-brand me-1" href="#">
                 <img src="asset/navbar-icon.png" alt="Logo" width="40" height="40" class="align-text-center">
                 <a class="text-decoration-none ps-0" href="index.php">
@@ -56,30 +54,30 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php if ($_SESSION['user_type'] == 'admin') { ?>
                         <li class="ms-2 nav-item">
-                            <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
+                            <a class="nav-link rounded-1" href="borrowed_book.php">Log</a>
                         </li>
                     <?php } ?>
                     <?php if ($_SESSION['user_type'] == 'user') { ?>
                     <li class="nav-item ms-">
-                        <a class="nav-link text-dark rounded-1" href="history_borrow.php">History</a>
+                        <a class="nav-link rounded-1" href="history_borrow.php">History</a>
                     </li>
                     <?php } ?>
                 </ul>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
-                    <a href="Admin_member.php" class="me-2">Go to Member Admin Page</a>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'Index.php') { ?>
+                    <a href="Admin_member.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Member Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
-                    <a href="Admin_page.php" class="me-2">Go to Book Admin Page</a>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'Index.php') { ?>
+                    <a href="Admin_page.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Book Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['page_name'] == 'admin_page.php') || $_SESSION['page_name'] == 'admin_member.php') { ?>
-                    <a href="Index.php" class="me-2">Go to Index Page</a>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['page_name'] == 'Admin_page.php') || $_SESSION['page_name'] == 'Admin_Member.php') { ?>
+                    <a href="Index.php" class="me-2 nav-link p-2 rounded-1 text-decoration-none">Go to Home Page</a>
                 <?php } ?>
                 <br>
-                <a href="Profile.php"><img class="object-fit-cover rounded-circle"
+                <a href="Profile.php"><img class="object-fit-cover me-2 rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">
-                    <a class="active text rounded-1 sign-out ps-2 p-1" aria-current="page" href="logout.php">SignOut</a>
+                    <a class="btn btn-danger text rounded-1 ps-2 p-1" aria-current="page" href="logout.php">Signout</a>
                 </li>
 
             </div>
