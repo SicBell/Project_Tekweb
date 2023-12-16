@@ -61,13 +61,10 @@
                         <a class="nav-link text-dark rounded-1" href="history_borrow.php">History</a>
                     </li>
                 </ul>
-                <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['admin_type'] == 'super' && $_SESSION['page_name'] == 'index.php') { ?>
-                    <a href="Admin_page.php" class="me-2">Go to Super Admin Page</a>
-                <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['admin_type'] == 'member' && $_SESSION['page_name'] == 'index.php') { ?>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
                     <a href="Admin_member.php" class="me-2">Go to Member Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['admin_type'] == 'book' && $_SESSION['page_name'] == 'index.php') { ?>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
                     <a href="Admin_page.php" class="me-2">Go to Book Admin Page</a>
                 <?php } ?>
                 <?php if ($_SESSION['user_type'] == 'admin' && $_SESSION['page_name'] == 'admin_page.php') { ?>

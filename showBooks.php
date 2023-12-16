@@ -5,7 +5,7 @@ if (isset($_POST['input'])) {
 
     $input = $_POST['input'];
 
-    $query = "SELECT * FROM books WHERE title LIKE '{$input}%' OR pengarang LIKE '{$input}%' OR tahun_terbit LIKE '%{$input}%'
+    $query = "SELECT * FROM books WHERE title LIKE '%{$input}%' OR pengarang LIKE '%{$input}%' OR tahun_terbit LIKE '%{$input}%'
         OR genre LIKE '{$input}%' OR book_status = '{$input}';";
 
     $result = mysqli_query($mysqli, $query);
@@ -65,7 +65,7 @@ if (isset($_POST['inputButton'])) {
 
     $input = $_POST['inputButton'];
 
-    $query = "SELECT * FROM books WHERE title LIKE '{$input}%' OR pengarang LIKE '{$input}%' OR tahun_terbit LIKE '%{$input}%'
+    $query = "SELECT * FROM books WHERE title LIKE '%{$input}%' OR pengarang LIKE '%{$input}%' OR tahun_terbit LIKE '%{$input}%'
         OR genre LIKE '{$input}%' OR book_status = '{$input}';";
 
     $result = mysqli_query($mysqli, $query);

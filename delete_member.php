@@ -21,7 +21,7 @@ if ($mysqli->connect_error) {
 }
 
 // Prepare and execute the SQL statement to delete the book
-$sql = "DELETE FROM accounts WHERE id = ?";
+$sql = "DELETE FROM accounts WHERE Id = ?";
 $stmt = $mysqli->prepare($sql);
 
 if ($stmt) {
