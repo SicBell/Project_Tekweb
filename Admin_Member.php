@@ -77,15 +77,9 @@ foreach ($result as $row) {
     );
 }
 
+$mysqli->close();
+
 require "header.php";
-
-require "db_connect.php";
-// Number of records to display per page
-$recordsPerPage = 10;
-
-// Get the current page from the URL parameter
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$start_from = ($current_page - 1) * $recordsPerPage;
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -101,6 +95,8 @@ if ($mysqli->connect_error) {
     <title>Welcome, Admin
         <?php echo $username; ?>!
     </title>
+    <script src="library/autoComplete.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -142,12 +138,18 @@ if ($mysqli->connect_error) {
     <p>.</p>
     <div class="container">
         <div class="row mt-5">
-            <!-- <form class="d-flex" role="search" action="Admin_Member.php.php" method="GET"> -->
-            <input class="text me-3" type="search" placeholder="Search by Name" autocomplete="off" aria-label="Search"
-                id="searchUser" name="searchUser">
-            <button type="submit"></button>
+            <div class="input-group">
+                <!-- <form class="d-flex" role="search" action="Admin_Member.php.php" method="GET"> -->
+                <input class="text" type="text" placeholder="Search by Name" id="searchUser" autocomplete="off"
+                    aria-label="Search">
+                <button class="btn btn-outline-primary" id="button-search"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg></button>
+            </div>
             <!-- </form> -->
-            <div class="col-12">
+            <div class="col-12 acc-result">
 
             </div>
             <!-- Add pagination links at the bottom of the table -->
@@ -186,42 +188,94 @@ if ($mysqli->connect_error) {
             </div>
         </div>
     </div>
-
-    <script src="library/autoComplete.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- JavaScript function to handle image click and display enlarged image -->
-    <script>
-        function displayEnlargedImg(imgPath) {
-            var modal = document.getElementById('imageModal');
-            var img = document.getElementById('enlargedImg');
-
-            // Set the image source to the clicked image path
-            img.src = imgPath;
-
-            // Show the modal
-            modal.style.display = 'block';
-        }
-
-        var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
-            data: <?php echo json_encode($data); ?>,
-            maximumItems: 10,
-            highlightTyped: true,
-            highlightClass: 'fw-bold text-primary'
-        });
-
-        // Close the modal when clicking outside the image
-        window.onclick = function (event) {
-            var modal = document.getElementById('imageModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-    </script>
 </body>
+<script>
+    function displayEnlargedImg(imgPath) {
+        var modal = document.getElementById('imageModal');
+        var img = document.getElementById('enlargedImg');
+
+        // Set the image source to the clicked image path
+        img.src = imgPath;
+
+        // Show the modal
+        modal.style.display = 'block';
+    }
+
+    var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
+        data: <?php echo json_encode($data); ?>,
+        maximumItems: 10,
+        highlightTyped: true,
+        highlightClass: 'fw-bold text-primary'
+    });
+
+    // Close the modal when clicking outside the image
+    window.onclick = function (event) {
+        var modal = document.getElementById('imageModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    $(document).ready(function () {
+        var input = "user";
+        <?php if (isset($_SESSION['username'])) { ?>
+            $.ajax({
+                url: "search_user.php",
+                method: "POST",
+                data: { input: input },
+
+                success: function (data) {
+                    $('.acc-result').html(data);
+                    $('.acc-result').css("display", "block");
+                }
+            });
+        <?php } ?>
+        $("#searchUser").keyup(function () {
+            input = $(this).val();
+            if (input != "") {
+                $.ajax({
+                    url: "search_user.php",
+                    method: "POST",
+                    data: { input: input },
+
+                    success: function (data) {
+                        $('.acc-result').html(data);
+                        $('.acc-result').css("display", "block");
+                    }
+                });
+            } else {
+                input = "user";
+                $.ajax({
+                    url: "search_user.php",
+                    method: "POST",
+                    data: { input: input },
+
+                    success: function (data) {
+                        $('.acc-result').html(data);
+                        $('.acc-result').css("display", "block");
+                    }
+                });
+            }
+        });
+        $("#button_search").click(function () {
+            input = $("#searchUser").val();
+            if (input != "") {
+                $.ajax({
+                    url: "search_user.php",
+                    method: "POST",
+                    data: { input: input },
+
+                    success: function (data) {
+                        $("#searchUser").val(input);
+                        $('.acc-result').html(data);
+                        $('.acc-result').css("display", "block");
+                    }
+                });
+            } else {
+                $('.acc-result').css("display", "none");
+            }
+        });
+    });
+</script>
 
 </html>
-
-<?php
-// Close the database connection
-$mysqli->close();
-?>
