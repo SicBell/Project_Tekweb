@@ -1,7 +1,7 @@
 <?php
 $db_host = "localhost";
 $db_user = "root";
-$db_pass = "";
+$db_pass = "root123";
 $db_name = "library";
 
 $mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
