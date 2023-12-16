@@ -60,7 +60,7 @@ $result = $mysqli->query($query);
                             <td>
                                 <?php
                                 $gambarPath = 'img/' . $row['gambar'];
-                                echo "<img src='$gambarPath' alt='Book Image' style='max-width: 100px; max-height: 100px;' onclick='displayEnlargedImg(\"$gambarPath\")'>";
+                                echo "<img src='$gambarPath' alt='Book Image' style='max-width: 100px; max-height: 100px;' id='profile_user' onclick='displayEnlargedImg(\"$gambarPath\")'>";
                                 ?>
                             </td>
                             <td><?php echo $row['book_status']; ?></td>

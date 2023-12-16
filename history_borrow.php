@@ -42,7 +42,7 @@ $mysqli->close();
     <?php require "header.php"; ?>
 
     <div class="container mt-5">
-        <h2>Borrowed Book History</h2>
+        <h2 class="mt-5">Borrowed Book History</h2>
 
         <?php if (!empty($borrowedBooks)): ?>
             <table class="table">

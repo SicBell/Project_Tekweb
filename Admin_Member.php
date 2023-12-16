@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin' || $_SESSION['admin_type'] !== 'member') {
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin' || $_SESSION['admin_type'] == 'book') {
     header("Location: login_page.php");
     exit();
 }
@@ -58,6 +58,7 @@ $row;
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
 }
+
 $username = $row['username'];
 $password = $row['password'];
 $_SESSION['email'] = $row['email'];
@@ -65,19 +66,57 @@ $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
 $_SESSION['page_name'] = 'admin_member.php';
 
-$q = "SELECT username FROM accounts ORDER BY username";
-$result = mysqli_query($mysqli, $q);
 
-$data = array();
+if ($_SESSION['admin_type'] == 'member') {
+    $q = "SELECT username FROM accounts WHERE user_type = 'user' ORDER BY username";
+    $result = mysqli_query($mysqli, $q);
 
-foreach ($result as $row) {
-    $data[] = array(
-        'label' => $row['username'],
-        'value' => $row['username']
-    );
+    $data = array();
+
+    foreach ($result as $row) {
+        $data[] = array(
+            'label' => $row['username'],
+            'value' => $row['username']
+        );
+    }
+} else {
+    $q = "SELECT username FROM accounts ORDER BY username";
+    $result = mysqli_query($mysqli, $q);
+
+    $data = array();
+
+    foreach ($result as $row) {
+        $data[] = array(
+            'label' => $row['username'],
+            'value' => $row['username']
+        );
+    }
+}
+
+
+// $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
+
+// $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user'";
+// $countResult = $mysqli->query($countQuery);
+// $totalRows = $countResult->fetch_assoc()['total'];
+$totalRows;
+if ($_SESSION['admin_type'] == 'member') {
+    $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE user_type = 'user'";
+    $countResult = $mysqli->query($countQuery);
+    $totalRows = $countResult->fetch_assoc()['total'];
+} else {
+    $countQuery = "SELECT COUNT(*) as total FROM accounts";
+    $countResult = $mysqli->query($countQuery);
+    $totalRows = $countResult->fetch_assoc()['total'];
 }
 
 $mysqli->close();
+// Number of records to display per page
+$recordsPerPage = 10;
+
+// Get the current page from the URL parameter
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start_from = ($current_page - 1) * $recordsPerPage;
 
 require "header.php";
 
@@ -138,16 +177,23 @@ if ($mysqli->connect_error) {
     <p>.</p>
     <div class="container">
         <div class="row mt-5">
-            <div class="input-group">
-                <!-- <form class="d-flex" role="search" action="Admin_Member.php.php" method="GET"> -->
+            <div class="input-group mb-3">
+                <!-- <form class="d-flex" role="search" action="Admin_Member.php" method="GET"> -->
                 <input class="text" type="text" placeholder="Search by Name" id="searchUser" autocomplete="off"
-                    aria-label="Search">
+                    aria-label="Search" name="search_query">
                 <button class="btn btn-outline-primary" id="button-search"><svg xmlns="http://www.w3.org/2000/svg"
                         width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path
                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                     </svg></button>
             </div>
+            <?php if (isset($_SESSION['msg'])) { ?>
+                <div class="alert alert-warning mb-3" role="alert">
+                    <?php echo $_SESSION['msg'];
+                    $_SESSION['msg'] = null;
+                    ?>
+                </div>
+            <?php } ?>
             <!-- </form> -->
             <div class="col-12 acc-result">
 
@@ -188,18 +234,12 @@ if ($mysqli->connect_error) {
             </div>
         </div>
     </div>
+
 </body>
 <script>
-    function displayEnlargedImg(imgPath) {
-        var modal = document.getElementById('imageModal');
-        var img = document.getElementById('enlargedImg');
-
-        // Set the image source to the clicked image path
-        img.src = imgPath;
-
-        // Show the modal
-        modal.style.display = 'block';
-    }
+    $(".delete_user").click(function () {
+        return confirm('Are you sure you want to delete this user?');
+    })
 
     var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
         data: <?php echo json_encode($data); ?>,
@@ -222,7 +262,7 @@ if ($mysqli->connect_error) {
             $.ajax({
                 url: "search_user.php",
                 method: "POST",
-                data: { input: input },
+                data: { input: input, start: <?php echo $start_from ?>, record: <?php echo $recordsPerPage ?> },
 
                 success: function (data) {
                     $('.acc-result').html(data);
@@ -236,7 +276,7 @@ if ($mysqli->connect_error) {
                 $.ajax({
                     url: "search_user.php",
                     method: "POST",
-                    data: { input: input },
+                    data: { input: input, start: <?php echo $start_from ?>, record: <?php echo $recordsPerPage ?> },
 
                     success: function (data) {
                         $('.acc-result').html(data);
@@ -248,7 +288,7 @@ if ($mysqli->connect_error) {
                 $.ajax({
                     url: "search_user.php",
                     method: "POST",
-                    data: { input: input },
+                    data: { input: input, start: <?php echo $start_from ?>, record: <?php echo $recordsPerPage ?> },
 
                     success: function (data) {
                         $('.acc-result').html(data);
@@ -263,7 +303,7 @@ if ($mysqli->connect_error) {
                 $.ajax({
                     url: "search_user.php",
                     method: "POST",
-                    data: { input: input },
+                    data: { input: input, start: <?php echo $start_from ?>, record: <?php echo $recordsPerPage ?> },
 
                     success: function (data) {
                         $("#searchUser").val(input);

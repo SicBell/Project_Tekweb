@@ -1,76 +1,81 @@
 <?php
-
+session_start();
 require "db_connect.php";
 
-// Number of records to display per page
-$recordsPerPage = 10;
-
-// Get the current page from the URL parameter
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$start_from = ($current_page - 1) * $recordsPerPage;
-
 // Get the search query from the form
-$search_query = isset($_POST['search_query']) ? $_POST['search_query'] : '';
+$search_query = isset($_POST['input']) ? $_POST['input'] : '';
+$start_from = $_POST['start'];
+$recordsPerPage = $_POST['record'];
 
-// Query to count total number of rows
-$countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user'";
-$countResult = $mysqli->query($countQuery);
-$totalRows = $countResult->fetch_assoc()['total'];
-
-$query = "SELECT * FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user' LIMIT $start_from, $recordsPerPage";
-$result = $mysqli->query($query);
-
-if (mysqli_num_rows($result) > 0) {
-    foreach ($result as $row) {
-        ?>
-        <p>
-            <?php if (isset($_SESSION['msg'])) {
-                echo $_SESSION['msg'];
-                $_SESSION['msg'] = null;
-            } ?>
-        </p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID User</th>
-                    <th>Profile</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <tr>
-                            <td>
-                                <?php echo $row['Id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['profile_pic']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['username']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['email']; ?>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" href="">Ubah</a>
-                                <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    echo "<tr><td colspan='7'>Tidak ada Member.</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    <?php }
+if ($_SESSION['admin_type'] == 'member') {
+    $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user'";
+    $countResult = $mysqli->query($countQuery);
+    $totalRows = $countResult->fetch_assoc()['total'];
+} else {
+    $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%'";
+    $countResult = $mysqli->query($countQuery);
+    $totalRows = $countResult->fetch_assoc()['total'];
 }
+
+if ($_SESSION['admin_type'] == 'member') {
+    $query = "SELECT * FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user' LIMIT $start_from, $recordsPerPage";
+} else {
+    $query = "SELECT * FROM accounts WHERE username LIKE '%$search_query%' LIMIT $start_from, $recordsPerPage";
+}
+
+$result = $mysqli->query($query);
 ?>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID User</th>
+            <th>Profile</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>User Type</th>
+            <th>Admin Type</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td>
+                        <?php echo $row['Id']; ?>
+                    </td>
+                    <td>
+                        <?php
+                        $gambarPath = 'img/' . $row['profile_pic'];
+                        $gambarName = $row['profile_pic'];
+                        echo "<img style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;' id='profile_user' src='img/$gambarName' alt='image.png'>";
+                        ?>
+                    </td>
+                    <td>
+                        <?php echo $row['username']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['email']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['user_type']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['admin_type'] == "" ? "(Akun ini hanya user biasa)" : $row['admin_type']; ?>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="edit_member.php?id=<?php echo $row['Id']; ?>">Ubah</a>
+                        <a href="delete_member.php?id=<?php echo $row['Id']; ?>" onclick="return confirm('Are you sure you want to delete this account?')" class="delete_user btn btn-danger">Hapus</a>
+                    </td>
+                </tr>
+                <?php
+            }
+        } else {
+            echo "<tr><td colspan='7'>Tidak ada Member.</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>

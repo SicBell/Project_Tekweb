@@ -5,7 +5,7 @@ if (isset($_POST['input'])) {
 
     $input = $_POST['input'];
 
-    $query = "SELECT * FROM books WHERE title LIKE '{$input}%' OR pengarang LIKE '{$input}%' OR tahun_terbit LIKE '%{$input}%'
+    $query = "SELECT * FROM books WHERE title LIKE '%{$input}%' OR pengarang LIKE '%{$input}%' OR tahun_terbit LIKE '%{$input}%'
         OR genre LIKE '{$input}%' OR book_status = '{$input}';";
 
     $result = mysqli_query($mysqli, $query);
@@ -41,12 +41,10 @@ if (isset($_POST['input'])) {
                                     <div class="modal-footer">
                                         <button type="button" style="color: blue; align-items: center;" class="btn btn-primary"
                                             data-bs-dismiss="modal">Close Window</button>
-                                        <a href="/Project_Tekweb/img/scunt1.png" download="scunt1.png">
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="redirectToBorrowForm(<?php echo $row['id']; ?>)">
-                                                Borrow Book
-                                            </button>
-                                        </a>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="redirectToBorrowForm(<?php echo $row['id']; ?>)">
+                                            Borrow Book
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +63,7 @@ if (isset($_POST['inputButton'])) {
 
     $input = $_POST['inputButton'];
 
-    $query = "SELECT * FROM books WHERE title LIKE '{$input}%' OR pengarang LIKE '{$input}%' OR tahun_terbit LIKE '%{$input}%'
+    $query = "SELECT * FROM books WHERE title LIKE '%{$input}%' OR pengarang LIKE '%{$input}%' OR tahun_terbit LIKE '%{$input}%'
         OR genre LIKE '{$input}%' OR book_status = '{$input}';";
 
     $result = mysqli_query($mysqli, $query);
