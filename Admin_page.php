@@ -156,15 +156,15 @@ if ($mysqli->connect_error) {
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Judul Buku</th>
-                            <th>Pengarang</th>
-                            <th>Tahun Terbit</th>
+                            <th>Number</th>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Publish Date</th>
                             <th>Genre</th>
-                            <th>Sinopsis</th>
-                            <th>Gambar</th>
+                            <th>Synopsis</th>
+                            <th>Picture</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
