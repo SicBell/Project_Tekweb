@@ -3,7 +3,7 @@
 
 session_start();
 
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
+if (!isset($_SESSION['username'])) {
     echo json_encode(["error" => "Unauthorized access"]);
     exit();
 }
