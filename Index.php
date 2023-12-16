@@ -116,7 +116,7 @@ $mysqli->close();
     </style>
 </head>
 
-<body style = "background-color: #fac9a2">
+<body style="background-color: #fac9a2">
     <?php require "header.php"; ?>
     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner welcome-part align-self-center">
@@ -130,7 +130,7 @@ $mysqli->close();
                 <img src="asset/background_login.jpg" class="img-fluid d-block" alt="...">
             </div>
             <div class="carousel-text mt-5 text-white d-flex justify-content-evenly vstack align-items-center">
-                <h1 style="font-size: 3rem;"/h1>WELCOME,
+                <h1 style="font-size: 3rem;" /h1>WELCOME,
                     <?php echo ucfirst($username); ?>
                 </h1>
             </div>
@@ -189,7 +189,7 @@ $mysqli->close();
         <div class="row book-result mb-3 hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
             <div class="col-12 hstack">
-                
+
             </div>
         </div>
     </div>
@@ -452,46 +452,79 @@ $mysqli->close();
         });
     </script>
 
+    <footer class="footer" style="background-color: #fab987">
+        <div class="container bottom_border">
+            <div class="row">
+                <div class=" col-sm-4 text-center col-md col-12 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+                    <!--headin5_amrc-->
+                    <p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    <p><i class="fa fa-location-arrow"></i> Jl. Siwalankerto No.121-131, Siwalankerto, Kec. Wonocolo,
+                        Surabaya, Jawa Timur 60236
+                    </p>
+                    <p><i class="fa fa-phone"></i> (031) 8439040 </p>
+                    <p><i class="fa fa fa-envelope"></i> info@petra.ac.id </p>
+
+
+                </div>
+
+
+
+
+
+                <div class=" col-sm-4 col-md d-flex justify-content-center vstack col-12 col">
+                    <h5 class="headin5_amrc d-flex align-self-center col_white_amrc pt2">Follow us</h5>
+                    <!--headin5_amrc ends here-->
+
+                    <ul class="d-flex justify-content-center mt-5 footer_ul2_amrc">
+                        <li class="d-flex mb-3 justify-content-center"><a href="https://wa.me/0817333434"
+                                target="_blank"> <img src="asset/whatsapp_icon.png" alt="Logo" width="45" height="45"
+                                    class="align-text-center"></a></p>
+                        </li>
+                        <li class="d-flex mb-3 justify-content-center"><a
+                                href="https://www.instagram.com/ui_library/?hl=en" target="_blank"> <img
+                                    src="asset/instagram_icon.png" alt="Logo" width="45" height="45"
+                                    class="align-text-center"></a></p>
+                        </li>
+                        <li class="d-flex justify-content-center"><a href="https://twitter.com/UI_library"
+                                target="_blank"> <img src="asset/x_icon.png" alt="Logo" width="45" height="45"
+                                    class="align-text-center"></a></p>
+                        </li>
+                    </ul>
+                    <!--footer_ul2_amrc ends here-->
+                </div>
+
+                <div class=" col-sm-4 col-md text-center col-12 col text-end">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Library News</h5>
+                    <!--headin5_amrc-->
+                    <div class="col-12 mb-2">
+                        <a href="https://www.independent.co.uk/news/world/americas/louisiana-banned-books-library-jeff-landry-b2324440.html"
+                            class="mb10">The school librarian in the middle of Louisiana’s war on libraries</a>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <a
+                            href="https://www.independent.co.uk/news/world/americas/meth-contamination-libraries-close-colorado-b2263932.html"><i
+                                class="fa fa-location-arrow"></i> Meth contamination is forcing libraries to close in
+                            Colorado
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a
+                            href="https://www.independent.co.uk/news/ap-money-libraries-republican-american-library-association-b2057656.html"><i
+                                class="fa fa-phone"></i>Money spat resolved over LGBTQ books at Mississippi library</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--foote_bottom_ul_amrc ends here-->
+        <p class="text-center">Copyright @2017 | Designed With by <a href="#">Richard Warren Company</a></p>
+        <!--social_footer_ul ends here-->
+        </div>
+
+    </footer>
 </body>
-<footer class="footer" style = "background-color: #fab987">
-<div class="container bottom_border">
-<div class="row">
-<div class=" col-sm-4 col-md col-sm-4  col-12 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
-<!--headin5_amrc-->
-<p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-<p><i class="fa fa-location-arrow"></i> Jl. Siwalankerto No.121-131, Siwalankerto, Kec. Wonocolo, Surabaya, Jawa Timur 60236
- </p>
-<p><i class="fa fa-phone"></i>  (031) 8439040  </p>
-<p><i class="fa fa fa-envelope"></i> info@petra.ac.id  </p>
-
-
-</div>
-
-
-
-
-
-<div class=" col-sm-4 col-md  col-12 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-<!--headin5_amrc ends here-->
-
-<ul class="footer_ul2_amrc">
-<li><a href="https://wa.me/0817333434" target="_blank"> <img src="asset/whatsapp_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
-<li><a href="https://www.instagram.com/ui_library/?hl=en" target="_blank"> <img src="asset/instagram_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
-<li><a href="https://twitter.com/UI_library" target="_blank"> <img src="asset/x_icon.png" alt="Logo" width="45" height="45" class="align-text-center"></a></p></li>
-</ul>
-<!--footer_ul2_amrc ends here-->
-</div>
-</div>
-</div>
-
-<!--foote_bottom_ul_amrc ends here-->
-<p class="text-center">Copyright @2017 | Designed With by <a href="#">Richard Warren Company</a></p>
-<!--social_footer_ul ends here-->
-</div>
-
-</footer>
 
 
 </html>
