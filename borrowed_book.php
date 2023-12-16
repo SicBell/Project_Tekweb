@@ -12,9 +12,8 @@ require "db_connect.php";
 $username = $_SESSION['username'];
 
 // Fetch borrowed books for the user
-$sql = "SELECT * FROM user_borrowed_books WHERE username = ?";
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("s", $username);
+$sql = "SELECT * FROM user_borrowed_books";
+$stmt = $mysqli->prepare($sql); 
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -48,7 +47,7 @@ $mysqli->close();
     <?php if (!empty($borrowedBooks)): ?>
         <ul>
             <?php foreach ($borrowedBooks as $book): ?>
-                <li>
+                <li class="mt-3">
                     <?php echo $book['book_title']; ?>
                     <form action="borrowBook.php" method="post" style="display: inline;">
                         <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">

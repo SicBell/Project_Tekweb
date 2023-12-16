@@ -54,10 +54,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="ms-2 nav-item">
-                        <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
-                    </li>
-                    <li class="nav-item">
+                    <?php if ($_SESSION['user_type'] == 'admin') { ?>
+                        <li class="ms-2 nav-item">
+                            <a class="nav-link text-dark rounded-1" href="borrowed_book.php">Log</a>
+                        </li>
+                    <?php } ?>
+                    <li class="nav-item ms-">
                         <a class="nav-link text-dark rounded-1" href="history_borrow.php">History</a>
                     </li>
                 </ul>
