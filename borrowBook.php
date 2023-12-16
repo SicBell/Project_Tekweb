@@ -1,64 +1,87 @@
 <?php
+// borrowBook.php
+
 session_start();
 
-
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
     echo json_encode(["error" => "Unauthorized access"]);
-
     exit();
 }
 
 require "db_connect.php";
 
-// Check if the book_id is provided
-if (isset($_POST['book_id'])) {
-    $bookId = $_POST['book_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['borrow'])) {
+        $bookId = $_POST['book_id'];
+        $username = $_SESSION['username'];
 
-    // Start a transaction to ensure data consistency
-    $mysqli->begin_transaction();
+        // Ensure you have a valid return date in your form
+        $returnDate = $_POST['return_date'];
 
-    try {
-        // Update the book status to "ready"
-        $updateSql = "UPDATE books SET book_status = 'ready' WHERE id = ?";
-        $updateStmt = $mysqli->prepare($updateSql);
-        $updateStmt->bind_param("i", $bookId);
+        $maxAllowedDate = date("Y-m-d", strtotime("+7 days"));
 
-        // Check if the book status is updated successfully
-        if ($updateStmt->execute()) {
-            // Remove the book entry from the user_borrowed_books table
-            $deleteSql = "DELETE FROM user_borrowed_books WHERE book_id = ?";
-            $deleteStmt = $mysqli->prepare($deleteSql);
-            $deleteStmt->bind_param("i", $bookId);
-
-            // Check if the entry is deleted successfully
-            if ($deleteStmt->execute()) {
-                // Commit the transaction if everything is successful
-                $mysqli->commit();
-
-                // Redirect back to the borrowed books page
-                header("Location: borrowed_book.php");
-                exit();
-            } else {
-                throw new Exception("Error deleting entry from user_borrowed_books: " . $deleteStmt->error);
-            }
-        } else {
-            throw new Exception("Error updating book status: " . $updateStmt->error);
+        if (strtotime($returnDate) > strtotime($maxAllowedDate)) {
+            echo json_encode(["error" => "Return date exceeds the maximum allowed date"]);
+            exit();
         }
-    } catch (Exception $e) {
-        // An error occurred, rollback the transaction
-        $mysqli->rollback();
 
-        // Print the error message
-        echo "Transaction failed: " . $e->getMessage();
-        error_reporting(E_ALL);
-        ini_set('display_errors', '1');
+        $updateSql = "UPDATE books SET book_status = 'borrowed' WHERE id = $bookId";
+        if (!$mysqli->query($updateSql)) {
+            echo json_encode(["error" => "Error updating book status: " . $mysqli->error]);
+            exit();
+        }
+
+        $userIdSql = "SELECT id FROM accounts WHERE username = '$username'";
+        $result = $mysqli->query($userIdSql);
+
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $userId = $row['id'];
+
+            $bookTitleSql = "SELECT title FROM books WHERE id = $bookId";
+            $bookResult = $mysqli->query($bookTitleSql);
+            $bookRow = $bookResult->fetch_assoc();
+            $bookTitle = $bookRow['title'];
+
+            $borrowDate = date("Y-m-d");
+            $insertSql = "INSERT INTO user_borrowed_books (user_id, username, book_id, book_title, borrow_date, return_date) VALUES ($userId, '$username', $bookId, '$bookTitle', '$borrowDate', '$returnDate')";
+            if (!$mysqli->query($insertSql)) {
+                echo json_encode(["error" => "Error inserting into user_borrowed_books: " . $mysqli->error]);
+                exit();
+            }
+            $_SESSION['success_message'] = "Book borrowed successfully!";
+
+            $mysqli->close();
+
+            header("Location: index.php");
+            exit();
+        } else {
+            echo json_encode(["error" => "Error retrieving user information"]);
+        }
+    } elseif (isset($_POST['return'])) {
+        $bookId = $_POST['book_id'];
+
+        $updateSql = "UPDATE books SET book_status = 'available' WHERE id = $bookId";
+        if (!$mysqli->query($updateSql)) {
+            echo json_encode(["error" => "Error updating book status: " . $mysqli->error]);
+            exit();
+        }
+
+        $deleteSql = "DELETE FROM user_borrowed_books WHERE book_id = $bookId";
+        if (!$mysqli->query($deleteSql)) {
+            echo json_encode(["error" => "Error deleting from user_borrowed_books: " . $mysqli->error]);
+            exit();
+        }
+        $_SESSION['success_message'] = "Book returned successfully!";
+
+        $mysqli->close();
+
+        header("Location: index.php");
+        exit();
+    } else {
+        echo json_encode(["error" => "Invalid request"]);
     }
-
-    // Close the statements
-    $updateStmt->close();
-    $deleteStmt->close();
+} else {
+    echo json_encode(["error" => "Invalid request method"]);
 }
-
-// Close the database connection
-$mysqli->close();
 ?>

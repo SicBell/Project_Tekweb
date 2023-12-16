@@ -143,9 +143,8 @@ if ($mysqli->connect_error) {
             </form>
 
             <div class="col-12 d-flex flex-row justify-content-between">
-                <h1>Daftar Buku</h1>
-                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah
-                        Buku</a></span>
+                <h1>Book List</h1>
+                <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Add Book</a></span>
             </div>
             <div class="col-12">
                 <p>
@@ -203,9 +202,9 @@ if ($mysqli->connect_error) {
                                         <?php echo $row['book_status']; ?>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Ubah</a>
+                                        <a class="btn btn-primary" href="edit_book.php?id=<?php echo $row['id']; ?>">Edit</a>
                                         <a href="delete_book.php?id=<?php echo $row['id']; ?>" class="btn mt-2 btn-danger"
-                                            onclick="return confirm('Are you sure you want to delete this book?')">Hapus</a>
+                                            onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
                                     </td>
                                 </tr>
                                 <?php

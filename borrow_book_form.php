@@ -64,10 +64,10 @@ $username = $_SESSION['username'];
                     style="max-width: 50%; max height: 50%;" alt="<?php echo $book['title'] ?>">
                 <div class="card-body pb-2 d-flex vstack text-center">
                     <span class="hstack d-flex justify-content-evenly">
-                        <a class="fs-4 fw-bold text-decoration-none default" id="pengarang" role="button">Pengarang</a>
-                        <a class="fs-4 fw-bold text-decoration-none default focus" id="sinopsis" role="button">Sinopsis</a>
+                        <a class="fs-4 fw-bold text-decoration-none default" id="pengarang" role="button">Author</a>
+                        <a class="fs-4 fw-bold text-decoration-none default focus" id="sinopsis" role="button">Synopsis</a>
                         <a class="fs-4 fw-bold text-decoration-none default" id="genre" role="button">Genre</a>
-                        <a class="fs-4 fw-bold text-decoration-none default" id="tahun" role="button">Tahun Terbit</a>
+                        <a class="fs-4 fw-bold text-decoration-none default" id="tahun" role="button">Published Date</a>
                     </span>
                     <span class="mt-4">
                         <h4 id="author" style="display: none;" class="card-text">
@@ -93,6 +93,7 @@ $username = $_SESSION['username'];
                         <button type='submit' style="background-color: #5a4637; border-color: #5a4637;"
                             class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
                     </form>
+                    <a href="Index.php">Go back to home page</a>
                 </div>
             </div>
         </div>

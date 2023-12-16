@@ -74,7 +74,7 @@ $result = $mysqli->query($query);
                 <?php
             }
         } else {
-            echo "<tr><td colspan='7'>Tidak ada Member.</td></tr>";
+            echo "<tr><td colspan='7'>No Member Found.</td></tr>";
         }
         ?>
     </tbody>

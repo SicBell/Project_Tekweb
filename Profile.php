@@ -64,6 +64,7 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
                     <button type="submit" class="btn btn-primary">Save Change</button>
                 </div>
             </form>
+            <a href=""></a>
             <?php
         }
         ?>
