@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 05:39 PM
+-- Generation Time: Dec 16, 2023 at 07:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -75,7 +75,10 @@ INSERT INTO `books` (`id`, `title`, `gambar`, `pengarang`, `tahun_terbit`, `genr
 (4, 'Matahari', 'tere liye.jpg', 'Tere Liye', '2023-12-14', 'romance', 'available', 'Matahari is sun'),
 (5, 'dilan', 'dilan.jpg', 'Dilan', '2023-12-28', 'Romance', 'available', 'He is Dilanku 1990 edition 1 in light blue with the character Dilan and his motorbike on the cover. Well, the picture of Dilan wearing a high school uniform in a very relaxed style on the cover was illustrated by the writer Pidi Baiq himself. The picture on the cover characterizes the contents of the novel which depicts teenage life. Below Dilan\'s picture is Pidi Baiq\'s quote, adding an interesting impression to the cover.'),
 (6, 'Hobbit', 'Hobbit.jpg', 'Wow', '2023-12-21', 'Action & Adventure', 'available', 'The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin\'s Company, on a quest to reclaim the dwarves\' home and treasure from the dragon Smaug.'),
-(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'available', 'Like the first book of the series, Percy Jackson and the Olympians follows Percy Jackson, a troubled middle school student who learns that all the Greek myths he grew up hearing are real, and that his mysterious absent father is actually one of those gods.');
+(7, 'Percy jackson', 'Percy jackson.jpeg', 'Rick Riordan', '2023-12-20', 'Science Fiction', 'available', 'Like the first book of the series, Percy Jackson and the Olympians follows Percy Jackson, a troubled middle school student who learns that all the Greek myths he grew up hearing are real, and that his mysterious absent father is actually one of those gods.'),
+(8, 'Malioboro at Midnight', 'Malioboro at Midnight.jpg', 'Skysphire', '2023-03-31', 'Romance', 'available', 'Midnight for most people is the best time to rest and sleep soundly. But for Serana Nighita, it was a time to cry over life and mourn her relationship with the famous singer, Jan Ichard. Popularity took the man far from him, Ichard in Jakarta, leaving Sera in Jogja. For Sera, midnight is always scary. However, everything changed after Malioboro Hartigan accidentally broke open his bedroom door one night. Malio comes and offers friendship so that Sera is not alone, so that Sera can share her sadness. So what about Sera and Jan Ichard\'s increasingly complicated relationship? And is it true that without realizing it, Malio has become Sera\'s best \'Midnight\'?'),
+(9, 'Crazy Rich Asians', 'Crazy Rich Asians.jpg', 'Kevin Kwan', '2023-07-05', 'Romance', 'available', 'Crazy Rich Asians is a darkly funny debut novel about three super-rich Chinese families and the genealogy and gossip, backbiting and scheming that ensues when the heir to one of Asia\'s most enormous fortunes brings home his ABC (American-born Chinese) girlfriend for the wedding this season. When Rachel Chu agreed to spend the summer in Singapore with her boyfriend, Nicholas Young, she envisioned a modest family home, long trips to explore the island, and quality time with the man she might one day marry.'),
+(10, 'Fantastic Beasts', 'Fantastic Beasts.jpeg', 'J.K. Rowling', '2023-02-10', 'Action & Adventure', 'available', 'Almost every witch\'s house in the country had a copy of Fantastic Beasts and Where to Find Them. Now Muggles also get the chance to find out where Quintapeds live, what Puffskeins eat, and why not leave milk for Knarl. Almost every wizard\'s house throughout the country must have a copy of the book Fantastic Beasts and Where to Find Them or Fantastic Beasts and Where to Find Them. Now for a limited time only, Muggles also get the chance to find out where Buckbeak the Hippogriff came from, that the Norwegian Fin-backed Dragon (Baby Norbert\'s breed) once preyed on whales, and that the Pixie who once scared Professor Lockhart half to death is actually very fond of pranks- silly joke.');
 
 -- --------------------------------------------------------
 
@@ -132,7 +135,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_borrowed_books`
