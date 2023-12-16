@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
+// Check if the user is logged in and is not an admin
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] === 'admin') {
     header("Location: login_page.php");
     exit();
 }

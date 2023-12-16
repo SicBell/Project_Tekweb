@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
+if (!isset($_SESSION['username'])) {
     header("Location: login_page.php");
     exit();
 }
@@ -53,7 +53,6 @@ $mysqli->close();
                         <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
                         <button class="btn btn-danger" type="submit" name="return">Return</button>
                     </form>
-                    
                 </li>
             <?php endforeach; ?>
         </ul>
