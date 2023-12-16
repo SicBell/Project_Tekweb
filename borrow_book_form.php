@@ -7,51 +7,9 @@ $bookId = isset($_GET['bookId']) ? $_GET['bookId'] : null;
 // Fetch book details based on the book ID
 $sql = "SELECT * FROM books WHERE id = $bookId";
 $result = mysqli_query($mysqli, $sql);
-
-// Check if the query was successful
-if ($result && mysqli_num_rows($result) == 1) {
-    $book = mysqli_fetch_assoc($result);
-
-    // Calculate the maximum date (20 days from now)
-    $maxDate = date("Y-m-d", strtotime("+7 days"));
-
-    // Display book details in a card
-    echo "<body style ='display: flex; align-items: center;justify-content: center;'>";
-    echo "<div class='card' style='width: 35rem; padding:  45px 0 0 0;'>";
-    echo "<img src='img/{$book['gambar']}' class='card-img-top' alt='{$book['title']}'>";
-    echo "<div class='card-body'>";
-    echo "<h5 class='card-title'>{$book['title']}</h5>";
-    echo "<p class='card-text'>Author: {$book['pengarang']}</p>";
-    echo "<p class='card-text'>Synopsis: {$book['sinopsis']}</p>";
-    echo "<p class='card-text'>Genre: {$book['genre']}</p>";
-    echo "<p class='card-text'>Publication Year: {$book['tahun_terbit']}</p>";
-    echo "</body>";
-
-    // Form to initiate the borrowing process with Return Date input
-    echo "<form action='borrowBook.php' method='post'>";
-    echo "<input type='hidden' name='book_id' value='{$book['id']}'>";
-
-    // Add Return Date input with max attribute
-    echo "<div class='mb-3'>";
-    echo "<label for='returnDate' class='form-label'>Return Date</label>";
-    echo "<input type='date' class='form-control' id='returnDate' name='return_date' required max='{$maxDate}'>";
-    echo "</div>";
-
-    // Add Borrow button
-    echo "<button type='submit' class='btn btn-primary' name='borrow'>Borrow</button>";
-    echo "</form>";
-
-    echo "</div>";
-
-    // You can also add a form or button for the user to proceed with borrowing
-} else {
-    // Handle the case when the book ID is not valid or the book doesn't exist
-    echo "Book not found.";
-}
-
-// Close the database connection
-mysqli_close($mysqli);
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <?php
 session_start();
@@ -67,10 +25,6 @@ $username = $_SESSION['username'];
 
 
 ?>
-
-?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -91,8 +45,9 @@ $username = $_SESSION['username'];
     </style>
 </head>
 
-<body>
+<body style ="background-color : #4cb6b6;">
     <?php
+    require "header.php";
     // Check if the query was successful
     if ($result && mysqli_num_rows($result) == 1) {
         $book = mysqli_fetch_assoc($result);
@@ -101,12 +56,12 @@ $username = $_SESSION['username'];
         $maxDate = date("Y-m-d", strtotime("+7 days"));
         ?>
         <div class="container d-flex justify-content-center">
-            <div class="card my-3" style="width: 75%;">
+            <div class="card my-3" style="width: 75%; padding: 50px 0 0 0; background-color: #99d5d5;">
                 <h1 class="align-self-center mt-2 card-title">
                     <?php echo $book['title'] ?>
                 </h1>
                 <img class="d-flex align-self-center mt-3" src="img/<?php echo $book['gambar'] ?>"
-                    style="width: 50%; height: 55%;" alt="<?php echo $book['title'] ?>">
+                    style="max-width: 50%; max height: 50%;" alt="<?php echo $book['title'] ?>">
                 <div class="card-body pb-2 d-flex vstack text-center">
                     <span class="hstack d-flex justify-content-evenly">
                         <a class="fs-4 fw-bold text-decoration-none default" id="pengarang" role="button">Pengarang</a>
@@ -184,7 +139,9 @@ $username = $_SESSION['username'];
                 $('#type').css("display", "none");
                 $('#year').css("display", "block");
             })
+            mysqli_close($mysqli);
         </script>
+
         <?php
         // You can also add a form or button for the user to proceed with borrowing
     } else {
@@ -193,7 +150,7 @@ $username = $_SESSION['username'];
     }
 
     // Close the database connection
-    mysqli_close($mysqli);
+    
     ?>
 </body>
 
