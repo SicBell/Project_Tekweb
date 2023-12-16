@@ -147,7 +147,7 @@ if (count($_POST) > 0 && isset($user['Id'])) {
                     <?php } ?>
                     <div class="mb-3">
                         <label class="form-label">Edit Email</label>
-                        <input type="text" class="form-control" name="email"
+                        <input type="email" class="form-control" name="email"
                             value="<?php echo $user ? htmlspecialchars($user['email']) : ''; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>

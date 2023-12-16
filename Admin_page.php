@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin' || $_SESSION['admin_type'] !== 'super') {
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin' || $_SESSION['admin_type'] == 'member') {
     header("Location: login_page.php");
     exit();
 }
@@ -147,10 +147,6 @@ if ($mysqli->connect_error) {
                 <span class="d-flex align-items-center"><a class="btn btn-primary" href="./add_book.php">Tambah
                         Buku</a></span>
             </div>
-            <form class="d-flex" role="search" action="search_book.php" method="GET">
-                <input class="text me-3" type="search" placeholder="Search by Title" aria-label="Search"
-                    name="search_query">
-            </form>
             <div class="col-12">
                 <p>
                     <?php if (isset($_SESSION['msg'])) {
