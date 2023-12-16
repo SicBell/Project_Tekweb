@@ -132,7 +132,7 @@ $mysqli->close();
     </div>
     <div class="container-fluid">
         <!-- <div class="text" style="z-index: 15;"> -->
-        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">OUR COLLECTION</p>
+        <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts mt-5">OUR COLLECTION</p>
         <p style="text-align: center; font-size: 40px; color: darkblue;" class="uts">----★----</p>
         <!-- </div> -->
         <span class="d-flex w-50 mx-auto justify-content-center mb-3">
