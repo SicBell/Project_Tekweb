@@ -108,6 +108,12 @@ $mysqli->close();
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="library/autoComplete.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .btn-filter {
+            background-color: #FF63B5 !important;
+            color: white !important;
+        }
+    </style>
 </head>
 
 <body style = "background-color: #fac9a2">
@@ -147,24 +153,24 @@ $mysqli->close();
         </span>
         <div class="filter-button mb-5 d-flex justify-content-center w-50 mx-auto">
             <ul class="list-group list-group-horizontal" style="list-style-type: none;">
-                <li><button type="button" class="btn btn-primary All me-2" aria-pressed="false">All</button>
+                <li><button type="button" class="btn btn-filter All me-2" aria-pressed="false">All</button>
                 </li>
-                <li><button type="button" class="btn btn-primary Fantasy me-2" aria-pressed="false">Fantasy</button>
+                <li><button type="button" class="btn btn-filter Fantasy me-2" aria-pressed="false">Fantasy</button>
                 </li>
-                <li><button type="button" class="btn btn-primary Science me-2" aria-pressed="false">Science
+                <li><button type="button" class="btn btn-filter Science me-2" aria-pressed="false">Science
                         Fiction</button></li>
-                <li><button type="button" class="btn btn-primary Action me-2" aria-pressed="false">Action &
+                <li><button type="button" class="btn btn-filter Action me-2" aria-pressed="false">Action &
                         Adventure</button></li>
-                <li><button type="button" class="btn btn-primary Mystery me-2" aria-pressed="false">Mystery</button>
+                <li><button type="button" class="btn btn-filter Mystery me-2" aria-pressed="false">Mystery</button>
                 </li>
-                <li><button type="button" class="btn btn-primary Horror me-2" aria-pressed="false">Horror</button></li>
-                <li><button type="button" class="btn btn-primary Thriller me-2" aria-pressed="false">Thriller &
+                <li><button type="button" class="btn btn-filter Horror me-2" aria-pressed="false">Horror</button></li>
+                <li><button type="button" class="btn btn-filter Thriller me-2" aria-pressed="false">Thriller &
                         Suspense</button></li>
-                <li><button type="button" class="btn btn-primary Romance me-2" aria-pressed="false">Romance</button>
+                <li><button type="button" class="btn btn-filter Romance me-2" aria-pressed="false">Romance</button>
                 </li>
-                <li><button type="button" class="btn btn-primary Biography me-2" aria-pressed="false">Biography</button>
+                <li><button type="button" class="btn btn-filter Biography me-2" aria-pressed="false">Biography</button>
                 </li>
-                <li><button type="button" class="btn btn-primary History me-2" aria-pressed="false">History</button>
+                <li><button type="button" class="btn btn-filter History me-2" aria-pressed="false">History</button>
                 </li>
             </ul>
         </div>
