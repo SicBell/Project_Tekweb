@@ -15,7 +15,7 @@ function getUserDetails($mysqli, $userId)
     if ($result->num_rows > 0) {
         $userDetails = $result->fetch_assoc();
     }
-
+    
     $stmt->close();
 
     return $userDetails;

@@ -53,7 +53,7 @@ $username = $_SESSION['username'];
         $book = mysqli_fetch_assoc($result);
 
         // Calculate the maximum date (20 days from now)
-        $maxDate = date("Y-m-d", strtotime("+7 days"));
+        $maxAllowedDate = date("Y-m-d", strtotime("+7 days"));
         ?>
         <div class="container d-flex justify-content-center">
             <div class="card my-3" style="width: 75%; padding: 50px 0 0 0; background-color: #99d5d5;">
@@ -84,11 +84,11 @@ $username = $_SESSION['username'];
                         </h4>
                     </span>
                     <form class="mt-5" action='borrowBook.php' method='post'>
-                        <input type='hidden' name='book_id' value='<?php $book['id'] ?>'>
+                    <input type='hidden' name='book_id' value='<?php echo $book['id']; ?>'>
                         <div class='mb-3 d-flex justify-content-center vstack'>
                             <label for='returnDate' class='form-label'>Return Date</label>
                             <input type='date' class='form-control d-flex align-self-center w-50' id='returnDate'
-                                name='return_date' required max='<?php echo $maxDate ?>'>
+                                name='return_date' required max='<?php echo $maxAllowedDate ?>'>
                         </div>
                         <button type='submit' style="background-color: #5a4637; border-color: #5a4637;" class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
                     </form>

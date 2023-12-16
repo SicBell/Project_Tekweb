@@ -21,7 +21,7 @@ if (count($_POST) > 0) {
         $validImageExtension = ['jpg', 'jpeg', 'png'];
         $imageExtension = explode('.', $filename);
         $imageExtension = strtolower(end($imageExtension));
-        
+
         if (!in_array($imageExtension, $validImageExtension)) {
             echo "<script> alert('Invalid Image Format');</script>";
         } else if ($fileSize > 1000000) {
@@ -68,7 +68,8 @@ if (count($_POST) > 0) {
         <div class="row mt-5">
             <div class="col-12 d-flex flex-row justify-content-between">
                 <h1>Tambah Buku</h1>
-                <span class="d-flex align-items-center"> <a class="btn btn-secondary" href="./Admin_page.php">Kembali</a></span>
+                <span class="d-flex align-items-center"> <a class="btn btn-secondary"
+                        href="./Admin_page.php">Kembali</a></span>
             </div>
             <div class="col-12">
                 <form method="post" enctype="multipart/form-data">
@@ -78,7 +79,8 @@ if (count($_POST) > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Gambar</label>
-                        <input class="form-control" name="gambar" accept=".jpg, .jpeg, .png" type="file" id="formFileMultiple" multiple>
+                        <input class="form-control" name="gambar" accept=".jpg, .jpeg, .png" type="file"
+                            id="formFileMultiple" multiple>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Pengarang</label>
