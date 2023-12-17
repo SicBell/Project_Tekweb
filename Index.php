@@ -519,7 +519,7 @@ $mysqli->close();
         </div>
 
         <!--foote_bottom_ul_amrc ends here-->
-        <p class="text-center">Copyright @2017 | Designed With by <a href="#">Richard Warren Company</a></p>
+        <p class="text-center">Copyright @2017 | Designed by <a href="#">YourLibrary Co.</a></p>
         <!--social_footer_ul ends here-->
         </div>
 

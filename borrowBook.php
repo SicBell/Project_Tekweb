@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <br>
             Genre: $bookGenre1
             <br><br>
-            You are recorded as borrowing this book on $borrowDate and you must return it on $returnDate
+            You are recorded as borrowing this book on $borrowDate and you must return it on $returnDate. If you don't return the book on time, there will be sanctions, namely that you won't be able to borrow books at YourLibrary for the next 1 month.
             <br><br>
             Thank you for your concern and happy reading! &#128214; &#x2764;
             ";
