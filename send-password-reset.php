@@ -30,8 +30,7 @@ if ($mysqli->affected_rows) {
     $mail->Subject = "Password Reset";
     $mail->Body = <<<END
     Reset Your Password:
-    Click <a href="localhost//Project_Tekweb/reset-password.php?token=$token">here</a> 
-
+    Click <a href="localhost//Project_Tekweb/reset-password.php?token=$token">here</a>
     END;
 
     try {
@@ -41,7 +40,7 @@ if ($mysqli->affected_rows) {
     } catch (Exception $e) {
 
         echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
-
+        exit;
     }
 
 }
@@ -204,8 +203,9 @@ if ($mysqli->affected_rows) {
 </head>
 
 <body>
-    <div class="container-fluid d-flex justify-content-center align-items-center" style="background-color:#F4BF96;">
+    <div class="container-fluid d-flex justify-content-center vstack align-items-center" style="background-color:#F4BF96;">
         <h1>Email was sent! Please check your email and Verify &#128522;</h1>
+        <a class="fs-3" style="color: #c6936b;" href="Login_Page.php">Go back to Login Page</a>
     </div>
 </body>
 

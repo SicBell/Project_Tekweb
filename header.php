@@ -69,7 +69,7 @@
                 <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'Index.php') { ?>
                     <a href="Admin_page.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Book Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['page_name'] == 'Admin_page.php') || $_SESSION['page_name'] == 'Admin_Member.php') { ?>
+                <?php if ($_SESSION['page_name'] != 'Index.php') { ?>
                     <a href="Index.php" class="me-2 nav-link p-2 rounded-1 text-decoration-none">Go to Home Page</a>
                 <?php } ?>
                 <br>

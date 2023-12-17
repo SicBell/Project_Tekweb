@@ -25,6 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
+        $sql = "SELECT * FROM books WHERE id = '$bookId'";
+        $result = mysqli_query($mysqli, $sql);
+        $row;
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+        }
+        $bookTitle1 = $row['title'];
+        $bookPicture1 = $row['gambar'];
+        $bookAuthor1 = $row['pengarang'];
+        $bookDate1 = date("d-m-Y", strtotime($row['tahun_terbit']));
+        $bookGenre1 = $row['genre'];
+
         $updateSql = "UPDATE books SET book_status = 'borrowed' WHERE id = $bookId";
         if (!$mysqli->query($updateSql)) {
             echo json_encode(["error" => "Error updating book status: " . $mysqli->error]);
@@ -50,6 +62,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
             $_SESSION['success_message'] = "Book borrowed successfully!";
+
+            $sql = "SELECT borrow_date, return_date FROM user_borrowed_books WHERE book_id =$bookId";
+            $result = mysqli_query($mysqli, $sql);
+            if (mysqli_num_rows($result) == 1) {
+                $row = mysqli_fetch_assoc($result);
+            }
+
+            $borrowDate = date("d-m-Y", strtotime($row['borrow_date']));
+            $returnDate = date("d-m-Y", strtotime($row['return_date']));
+
+            $email = $_SESSION['email'];
+
+            $mail = require __DIR__ . "/mailer.php";
+            $mail->setFrom("noreply@example.com");
+            $mail->addAddress($email);
+            $mail->Subject = "Borrow Book Details";
+            $mail->Body ="
+            Thank you for borrowing in YourLibrary.
+            <br>
+            Here is your book detail:
+            <br>
+            <img style='' src='cid:book'>
+            <br>
+            Title: $bookTitle1
+            <br>
+            Author: $bookAuthor1
+            <br>
+            Release Date: $bookDate1
+            <br>
+            Genre: $bookGenre1
+            <br><br>
+            You are recorded as borrowing this book on $borrowDate and you must return it on $returnDate
+            <br><br>
+            Thank you for your concern and happy reading! &#128214; &#x2764;
+            ";
+
+            $mail->AddEmbeddedImage("img/$bookPicture1", "book");
+            try {
+                $mail->send();
+
+            } catch (Exception $e) {
+
+                echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+                exit;
+            }
 
             $mysqli->close();
 

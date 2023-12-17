@@ -9,6 +9,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
 require "db_connect.php";
 
 $username = $_SESSION['username'];
+$_SESSION['page_name'] = "history_borrow.php";
 
 // Fetch borrowed book history for the logged-in user
 $sql = "SELECT * FROM user_borrowed_books WHERE username = ?";

@@ -39,6 +39,7 @@ if (count($_POST) > 0 && isset($user['Id'])) {
         $password = $_POST['password'];
         $user_type = isset($_POST['user_type']) ? $_POST['user_type'] : "";
         $admin_type = isset($_POST['admin_type']) ? $_POST['admin_type'] : "";
+        $email = $_POST['email'];
 
         $stmt;
         // Handle image upload
@@ -48,19 +49,19 @@ if (count($_POST) > 0 && isset($user['Id'])) {
 
             move_uploaded_file($_FILES['pp']['tmp_name'], $upload_dir . $newImageName);
             if ($user_type == "") {
-                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, profile_pic=?, password=? WHERE id=?");
-                $stmt->bind_param("sssi", $username, $newImageName, $password, $user['Id']);
+                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, profile_pic=?, email =?, password=? WHERE id=?");
+                $stmt->bind_param("ssssi", $username, $newImageName, $email, $password, $user['Id']);
             } else {
-                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, profile_pic=?, password=?, user_type=?, admin_type=? WHERE id=?");
-                $stmt->bind_param("sssssi", $username, $newImageName, $password, $user_type, $admin_type, $user['Id']);
+                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, profile_pic=?, password=?, email=?, user_type=?, admin_type=? WHERE id=?");
+                $stmt->bind_param("ssssssi", $username, $newImageName, $password, $email, $user_type, $admin_type, $user['Id']);
             }
         } else {
             if ($user_type == "" || $admin_type == "") {
-                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, password=? WHERE id=?");
-                $stmt->bind_param("ssi", $username, $password, $user['Id']);
+                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, email=?, password=? WHERE id=?");
+                $stmt->bind_param("sssi", $username, $email, $password, $user['Id']);
             } else {
-                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, password=?, user_type=?, admin_type=? WHERE id=?");
-                $stmt->bind_param("ssssi", $username, $password, $user_type, $admin_type, $user['Id']);
+                $stmt = $mysqli->prepare("UPDATE accounts SET username=?, password=?, email=?, user_type=?, admin_type=? WHERE id=?");
+                $stmt->bind_param("sssssi", $username, $password, $email, $user_type, $admin_type, $user['Id']);
             }
         }
 
@@ -118,7 +119,7 @@ if (count($_POST) > 0 && isset($user['Id'])) {
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Edit Password</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" value="<?php echo $user ? htmlspecialchars($user['password']) : ''; ?>">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Confirm Password</label>

@@ -10,6 +10,7 @@ if (!isset($_SESSION['username'])) {
 require "db_connect.php";
 
 $username = $_SESSION['username'];
+$_SESSION['page_name'] = "borrowed_book.php";
 
 // Fetch borrowed books for the user
 $sql = "SELECT * FROM user_borrowed_books";
@@ -42,6 +43,7 @@ $mysqli->close();
 </head>
 
 <body>
+<?php require "header.php"; ?>
 <div class="container mt-5">
     <h2>Borrowed Books</h2>
     <?php if (!empty($borrowedBooks)): ?>
