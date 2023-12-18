@@ -9,21 +9,26 @@ if (!isset($_SESSION['username'])) {
 require "db_connect.php";
 
 if (isset($_POST['username']) || isset($_POST['email']) || isset($_POST['emailUser']) || isset($_FILES['profilePic'])) {
-    $_SESSION['profilePic'] = $_FILES['profilePic']['name'];
     $error = $_FILES['profilePic']['error'];
     $_SESSION['username'] = $_POST['username'];
     $tmpName = $_FILES['profilePic']['tmp_name'];
     $imgName = $_FILES['profilePic']['name'];
 } else {
     $error = "";
-    $img_name = "";
+    $imgName = "";
 }
 
 $username = $_SESSION['username'];
 
 if (!($error === 0) && isset($_POST['username'])) {
-    echo "unknown error occured!";
-    exit;
+    $new_username = $_POST['username'];
+    $new_mail = $_POST['emailUser'];
+    $old_mail = $_SESSION['email'];
+    // Insert into database
+    $sql = "UPDATE accounts
+            SET username = '$new_username', email = '$new_mail'
+            WHERE email = '$old_mail'";
+    $mysqli->query($sql);
 } else {
     if (isset($_FILES['profilePic'])) {
         $img_ex = pathinfo($imgName, PATHINFO_EXTENSION);
@@ -59,6 +64,7 @@ $row;
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
 }
+
 $username = $row['username'];
 $password = $row['password'];
 $_SESSION['email'] = $row['email'];
@@ -88,6 +94,7 @@ foreach ($result as $row) {
         'value' => $row['title']
     );
 }
+
 $mysqli->close();
 ?>
 
@@ -97,7 +104,7 @@ $mysqli->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css">
@@ -188,7 +195,7 @@ $mysqli->close();
         </div>
         <div class="row book-result mb-3 hstack d-flex justify-content-center">
             <!-- <div class="col-lg-12 col-md-3 col-sm-6"> -->
-            <div class="col-12 hstack">
+            <div class="col-12">
 
             </div>
         </div>
@@ -210,15 +217,15 @@ $mysqli->close();
         });
 
         var inputButton;
-        var F = $(".Fantasy").attr("aria-pressed");
-        var S = $(".Science").attr("aria-pressed");
-        var H = $(".History").attr("aria-pressed");
-        var B = $(".Biography").attr("aria-pressed");
-        var R = $(".Romance").attr("aria-pressed");
-        var T = $(".Thriller").attr("aria-pressed");
-        var Ho = $(".Horror").attr("aria-pressed");
-        var A = $(".Action").attr("aria-pressed");
-        var M = $(".Mystery").attr("aria-pressed");
+        // var F = $(".Fantasy").attr("aria-pressed");
+        // var S = $(".Science").attr("aria-pressed");
+        // var H = $(".History").attr("aria-pressed");
+        // var B = $(".Biography").attr("aria-pressed");
+        // var R = $(".Romance").attr("aria-pressed");
+        // var T = $(".Thriller").attr("aria-pressed");
+        // var Ho = $(".Horror").attr("aria-pressed");
+        // var A = $(".Action").attr("aria-pressed");
+        // var M = $(".Mystery").attr("aria-pressed");
 
         $(".All").click(function () {
             // if (F == "false") {

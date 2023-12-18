@@ -29,7 +29,7 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
 <body>
     <div class="container-fluid mx-auto rounded-3 p-3" style="width: 70%; margin-top: 5%; background-color: #F5EEDC;">
         <?php
-        if ($_SESSION['user_type'] == 'user') {
+        if ($_SESSION['page_name'] == 'Index.php') {
             ?>
             <form method="post" action="Index.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
         }
         ?>
         <?php
-        if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'super' || $_SESSION['admin_type'] == 'super')) {
+        if ($_SESSION['page_name'] == 'Admin_page.php') {
             ?>
             <form method="post" action="Admin_Page.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">
@@ -108,7 +108,7 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
         }
         ?>
         <?php
-        if ($_SESSION['user_type'] == 'admin' && $_SESSION['admin_type'] == 'member') {
+        if ($_SESSION['page_name'] == 'Admin_Member.php') {
             ?>
             <form method="post" action="Admin_Member.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">

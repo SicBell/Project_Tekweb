@@ -43,11 +43,9 @@ if (count($_POST) > 0 && isset($book['id'])) {
 
         move_uploaded_file($_FILES['gambar']['tmp_name'], $upload_dir . $newImageName);
 
-        // Update the database with the new image name ($newImageName) and sinopsis
         $stmt = $mysqli->prepare("UPDATE books SET title=?, gambar=?, pengarang=?, tahun_terbit=?, genre=?, sinopsis=? WHERE id=?");
         $stmt->bind_param("ssssssi", $title, $newImageName, $pengarang, $tahun_terbit, $genre, $sinopsis, $book['id']);
     } else {
-        // Update the database without changing the image and including sinopsis
         $stmt = $mysqli->prepare("UPDATE books SET title=?, pengarang=?, tahun_terbit=?, genre=?, sinopsis=? WHERE id=?");
         $stmt->bind_param("sssssi", $title, $pengarang, $tahun_terbit, $genre, $sinopsis, $book['id']);
     }
@@ -82,32 +80,32 @@ if (count($_POST) > 0 && isset($book['id'])) {
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 d-flex flex-row justify-content-between">
-                <h1>Ubah Buku</h1>
+                <h1>Edit Book</h1>
                 <span class="d-flex align-items-center"><a class="btn btn-secondary" href="./Admin_page.php">Kembali</a></span>
             </div>
             <div class="col-12">
                 <p><?php echo $err_msg; ?></p>
                 <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label class="form-label">Judul Buku</label>
+                        <label class="form-label">Book Title</label>
                         <input type="text" class="form-control" name="title" value="<?php echo $book ? htmlspecialchars($book['title']) : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Gambar</label>
+                        <label class="form-label">Picture</label>
                         <input type="file" class="form-control" name="gambar" accept=".jpg, .jpeg, .png">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Pengarang</label>
+                        <label class="form-label">Author</label>
                         <input type="text" class="form-control" name="pengarang"
                             value="<?php echo $book ? htmlspecialchars($book['pengarang']) : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Tahun Terbit</label>
+                        <label class="form-label">Published Date</label>
                         <input type="date" class="form-control" name="tahun_terbit"
                             value="<?php echo $book ? $book['tahun_terbit'] : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Sinopsis</label>
+                        <label class="form-label">Synopsis</label>
                         <textarea class="form-control" name="sinopsis" rows="3"><?php echo $book ? htmlspecialchars($book['sinopsis']) : ''; ?></textarea>
                     </div>
                     <div class="mb-3">

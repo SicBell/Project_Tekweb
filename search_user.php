@@ -35,7 +35,7 @@ $result = $mysqli->query($query);
             <th>Email</th>
             <th>User Type</th>
             <th>Admin Type</th>
-            <th>Aksi</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -67,8 +67,8 @@ $result = $mysqli->query($query);
                         <?php echo $row['admin_type'] == "" ? "(Akun ini hanya user biasa)" : $row['admin_type']; ?>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="edit_member.php?id=<?php echo $row['Id']; ?>">Ubah</a>
-                        <a href="delete_member.php?id=<?php echo $row['Id']; ?>" onclick="return confirm('Are you sure you want to delete this account?')" class="delete_user btn btn-danger">Hapus</a>
+                        <a class="btn btn-primary" href="edit_member.php?id=<?php echo $row['Id']; ?>">Edit</a>
+                        <a href="delete_member.php?id=<?php echo $row['Id']; ?>" onclick="return confirm('Are you sure you want to delete this account?')" class="delete_user btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 <?php

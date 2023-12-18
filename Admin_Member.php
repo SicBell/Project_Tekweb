@@ -92,13 +92,6 @@ if ($_SESSION['admin_type'] == 'member') {
         );
     }
 }
-
-
-// $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
-
-// $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE username LIKE '%$search_query%' AND user_type = 'user'";
-// $countResult = $mysqli->query($countQuery);
-// $totalRows = $countResult->fetch_assoc()['total'];
 $totalRows;
 if ($_SESSION['admin_type'] == 'member') {
     $countQuery = "SELECT COUNT(*) as total FROM accounts WHERE user_type = 'user'";
@@ -111,7 +104,6 @@ if ($_SESSION['admin_type'] == 'member') {
 }
 
 $mysqli->close();
-// Number of records to display per page
 $recordsPerPage = 10;
 
 // Get the current page from the URL parameter
@@ -141,7 +133,6 @@ if ($mysqli->connect_error) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <!-- Add the modal styles -->
     <style>
         .modal {
             display: none;
@@ -194,11 +185,9 @@ if ($mysqli->connect_error) {
                     ?>
                 </div>
             <?php } ?>
-            <!-- </form> -->
             <div class="col-12 acc-result">
 
             </div>
-            <!-- Add pagination links at the bottom of the table -->
             <div class="col-12">
                 <ul class="pagination">
                     <?php
