@@ -8,7 +8,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['msg'] = "Invalid member id.";
-    header("Location: Admin_Member.php");
+    header("Location: admin_member.php");
     exit();
 }
 
@@ -38,6 +38,6 @@ if ($stmt) {
 $mysqli->close();
 
 // Redirect back to the book list page
-header("Location: Admin_Member.php");
+header("Location: admin_member.php");
 exit();
 ?>

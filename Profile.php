@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require "Login.php" ?>
+<?php require "login.php" ?>
 
 <head>
     <meta charset="UTF-8">
@@ -29,9 +29,9 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
 <body>
     <div class="container-fluid mx-auto rounded-3 p-3" style="width: 70%; margin-top: 5%; background-color: #F5EEDC;">
         <?php
-        if ($_SESSION['page_name'] == 'Index.php') {
+        if ($_SESSION['page_name'] == 'index.php') {
             ?>
-            <form method="post" action="Index.php" enctype='multipart/form-data'>
+            <form method="post" action="index.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">
                     <img class="rounded-circle object-fit-cover" src="../Project_Tekweb/img/<?php
                     echo $_SESSION['profile_pic'] ?>" alt="Profile" width="100" height="100" class="align-text-center">
@@ -69,9 +69,9 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
         }
         ?>
         <?php
-        if ($_SESSION['page_name'] == 'Admin_page.php') {
+        if ($_SESSION['page_name'] == 'admin_page.php') {
             ?>
-            <form method="post" action="Admin_Page.php" enctype='multipart/form-data'>
+            <form method="post" action="admin_Page.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">
                     <img class="rounded-circle object-fit-cover" src="../Project_Tekweb/img/<?php
                     echo $_SESSION['profile_pic'] ?>" alt="Profile" width="100" height="100" class="align-text-center">
@@ -108,9 +108,9 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
         }
         ?>
         <?php
-        if ($_SESSION['page_name'] == 'Admin_Member.php') {
+        if ($_SESSION['page_name'] == 'admin_member.php') {
             ?>
-            <form method="post" action="Admin_Member.php" enctype='multipart/form-data'>
+            <form method="post" action="admin_member.php" enctype='multipart/form-data'>
                 <div class="mb-3 d-flex justify-content-center">
                     <img class="rounded-circle object-fit-cover" src="../Project_Tekweb/img/<?php
                     echo $_SESSION['profile_pic'] ?>" alt="Profile" width="100" height="100" class="align-text-center">
@@ -148,9 +148,9 @@ if (!isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
         ?>
         <div class="mt-3 back-link d-flex justify-content-center">
             <a href="<?php echo $_SESSION['page_name'] ?>">Go to
-                <?php if ($_SESSION['page_name'] == "Index.php") {
+                <?php if ($_SESSION['page_name'] == "index.php") {
                     echo "Home Page";
-                } elseif ($_SESSION['page_name'] == "Admin_Member.php") {
+                } elseif ($_SESSION['page_name'] == "admin_member.php") {
                     echo "Admin Member Page";
                 } else {
                     echo "Book Admin Page";

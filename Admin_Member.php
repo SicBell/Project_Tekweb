@@ -21,8 +21,14 @@ if (isset($_POST['username']) || isset($_POST['email']) || isset($_POST['emailUs
 $username = $_SESSION['username'];
 
 if (!($error === 0) && isset($_POST['username'])) {
-    echo "unknown error occured!";
-    exit;
+    $new_username = $_POST['username'];
+    $new_mail = $_POST['emailUser'];
+    $old_mail = $_SESSION['email'];
+    // Insert into database
+    $sql = "UPDATE accounts
+            SET username = '$new_username', email = '$new_mail'
+            WHERE email = '$old_mail'";
+    $mysqli->query($sql);
 } else {
     if (isset($_FILES['profilePic'])) {
         $img_ex = pathinfo($imgName, PATHINFO_EXTENSION);
@@ -64,7 +70,7 @@ $password = $row['password'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
-$_SESSION['page_name'] = 'Admin_Member.php';
+$_SESSION['page_name'] = 'admin_member.php';
 
 
 if ($_SESSION['admin_type'] == 'member') {
@@ -169,7 +175,6 @@ if ($mysqli->connect_error) {
     <div class="container">
         <div class="row mt-5">
             <div class="input-group mb-3">
-                <!-- <form class="d-flex" role="search" action="Admin_Member.php" method="GET"> -->
                 <input class="text" type="text" placeholder="Search by Name" id="searchUser" autocomplete="off"
                     aria-label="Search" name="search_query">
                 <button class="btn btn-outline-primary" id="button-search"><svg xmlns="http://www.w3.org/2000/svg"
@@ -226,10 +231,6 @@ if ($mysqli->connect_error) {
 
 </body>
 <script>
-    $(".delete_user").click(function () {
-        return confirm('Are you sure you want to delete this user?');
-    })
-
     var auto_complete = new Autocomplete(document.getElementById('searchUser'), {
         data: <?php echo json_encode($data); ?>,
         maximumItems: 10,

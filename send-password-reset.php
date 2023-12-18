@@ -205,7 +205,7 @@ if ($mysqli->affected_rows) {
 <body>
     <div class="container-fluid d-flex justify-content-center vstack align-items-center" style="background-color:#F4BF96;">
         <h1>Email was sent! Please check your email and Verify &#128522;</h1>
-        <a class="fs-3" style="color: #c6936b;" href="Login_Page.php">Go back to Login Page</a>
+        <a class="fs-3" style="color: #c6936b;" href="login_page.php">Go back to Login Page</a>
     </div>
 </body>
 

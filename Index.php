@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: Login_Page.php");
+    header("Location: login_page.php");
     exit;
 }
 
@@ -70,7 +70,7 @@ $password = $row['password'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['profile_pic'] = $row['profile_pic'];
 $_SESSION['username'] = $username;
-$_SESSION['page_name'] = 'Index.php';
+$_SESSION['page_name'] = 'index.php';
 
 // Fetch books from the database
 $sql = "SELECT * FROM books";
@@ -115,12 +115,6 @@ $mysqli->close();
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="library/autoComplete.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <style>
-        .btn-filter {
-            background-color: #FF63B5 !important;
-            color: white !important;
-        }
-    </style>
 </head>
 
 <body style="background-color: #fac9a2">

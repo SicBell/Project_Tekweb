@@ -69,7 +69,7 @@ if (count($_POST) > 0 && isset($user['Id'])) {
 
         if ($res) {
             $_SESSION['msg'] = "Berhasil update data.";
-            header("Location: Admin_Member.php");
+            header("Location: admin_member.php");
             exit;
         } else {
             $err_msg = "Gagal mengupdate data: " . $stmt->error;

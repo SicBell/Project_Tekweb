@@ -16,6 +16,11 @@
     }
 }
 
+.btn-filter {
+    background-color: #FF63B5 !important;
+    color: white !important;
+}
+
 .welcome-part {
     width: 33.3%;
     height: 80vh;

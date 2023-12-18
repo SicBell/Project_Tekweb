@@ -42,7 +42,7 @@ if (count($_POST) > 0) {
 
     if ($res) {
         $_SESSION['msg'] = "Berhasil menambah buku";
-        header("Location: Admin_page.php");
+        header("Location: admin_page.php");
         die();
     } else {
         echo "Tidak dapat menambah buku";
@@ -68,7 +68,7 @@ if (count($_POST) > 0) {
             <div class="col-12 d-flex flex-row justify-content-between">
                 <h1>Tambah Buku</h1>
                 <span class="d-flex align-items-center"> <a class="btn btn-secondary"
-                        href="./Admin_page.php">Kembali</a></span>
+                        href="./admin_page.php">Kembali</a></span>
             </div>
             <div class="col-12">
                 <form method="post" enctype="multipart/form-data">

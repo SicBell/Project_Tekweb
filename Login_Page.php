@@ -1,6 +1,6 @@
 <?php
   include("db_connect.php");
-  include("Sign_up.php");
+  include("sign_up.php");
 ?>
 <style>
   /* Google Font Link */
@@ -291,7 +291,7 @@ body{
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-          <form action="Login.php" name="Login_form" method="POST">
+          <form action="login.php" name="Login_form" method="POST">
             <div class="input-boxes">
               <div class="input-box">
                 <i id="logo" class="fas fa-envelope"></i>
@@ -301,7 +301,7 @@ body{
                 <i id="logo" class="fas fa-lock"></i>
                 <input type="password" id="Login_password" name="Login_password" placeholder="Enter your password" required>
               </div>
-              <div  class="text"><a  href="Forgot_password_page.php">Forgot password?</a></div>
+              <div  class="text"><a  href="forgot_password_page.php">Forgot password?</a></div>
               <div class="button input-box">
                 <input type="submit" name="Login" value="Login">
               </div>
@@ -312,7 +312,7 @@ body{
       </div>
         <div class="signup-form">
           <div class="title">Signup</div>
-        <form name="signup_form" method="POST" action="Sign_up.php">
+        <form name="signup_form" method="POST" action="sign_up.php">
             <div class="input-boxes">
               <div class="input-box">
                 <i id="logo" class="fas fa-user"></i>

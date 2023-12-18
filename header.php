@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require "Login.php" ?>
+<?php require "login.php" ?>
 
 <head>
     <meta charset="UTF-8">
@@ -63,17 +63,17 @@
                     </li>
                     <?php } ?>
                 </ul>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'Index.php') { ?>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'member' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
                     <a href="Admin_member.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Member Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'Index.php') { ?>
-                    <a href="Admin_page.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Book Admin Page</a>
+                <?php if ($_SESSION['user_type'] == 'admin' && ($_SESSION['admin_type'] == 'book' || $_SESSION['admin_type'] == 'super') && $_SESSION['page_name'] == 'index.php') { ?>
+                    <a href="admin_page.php" class="me-2 p-2 nav-link rounded-1 text-decoration-none">Go to Book Admin Page</a>
                 <?php } ?>
-                <?php if ($_SESSION['page_name'] != 'Index.php') { ?>
-                    <a href="Index.php" class="me-2 nav-link p-2 rounded-1 text-decoration-none">Go to Home Page</a>
+                <?php if ($_SESSION['page_name'] != 'index.php') { ?>
+                    <a href="index.php" class="me-2 nav-link p-2 rounded-1 text-decoration-none">Go to Home Page</a>
                 <?php } ?>
                 <br>
-                <a href="Profile.php"><img class="object-fit-cover me-2 rounded-circle"
+                <a href="profile.php"><img class="object-fit-cover me-2 rounded-circle"
                         src="../Project_Tekweb/img/<?php echo $_SESSION['profile_pic'] ?>" alt="Logo" width="40"
                         height="40" class="align-text-center"></a>
                 <li class="nav-item d-flex align-items-center">

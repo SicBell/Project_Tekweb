@@ -19,7 +19,7 @@ if (isset($_POST["Login"])) {
     $_SESSION['profile_pic'] = $row['profile_pic'];
     $_SESSION['admin_type'] = $row['admin_type'];
 
-    header("Location: Index.php");
+    header("Location: index.php");
     exit();
   } else {
     echo '<script>

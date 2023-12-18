@@ -93,7 +93,7 @@ $username = $_SESSION['username'];
                         <button type='submit' style="background-color: #5a4637; border-color: #5a4637;"
                             class='btn mt-3 btn-primary' name='borrow'>Borrow</button>
                     </form>
-                    <a href="Index.php">Go back to home page</a>
+                    <a href="index.php">Go back to home page</a>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
 // Check if the book id is provided in the URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['msg'] = "Invalid book id.";
-    header("Location: Admin_page.php");
+    header("Location: admin_page.php");
     exit();
 }
 
@@ -61,6 +61,6 @@ if ($stmt) {
 $mysqli->close();
 
 // Redirect back to the book list page
-header("Location: Admin_page.php");
+header("Location: admin_page.php");
 exit();
 ?>
